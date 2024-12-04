@@ -9,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @Transactional
 public class SubjectsServiceImpl implements SubjectsService {
@@ -17,9 +19,14 @@ public class SubjectsServiceImpl implements SubjectsService {
     SubjectsRepository subjectsRepository;
 
     @Override
-    public ResponseEntity<?> saveSubject(SubjectDTO subjectDTO) {
+    public Subject saveSubject(SubjectDTO subjectDTO) {
         Subject subject = new Subject(subjectDTO.getName());
         subjectsRepository.save(subject);
-        return ResponseEntity.ok("Successful Create New Subject");
+        return subject;
+    }
+
+    @Override
+    public List<Subject> getAll() {
+        return subjectsRepository.findAll();
     }
 }

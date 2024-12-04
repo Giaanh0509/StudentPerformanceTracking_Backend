@@ -4,6 +4,10 @@ import com.example.StudentPerfomanceTracking.dto.SubjectDTO;
 import com.example.StudentPerfomanceTracking.entity.Subject;
 import org.springframework.http.ResponseEntity;
 
+import java.util.List;
+
 public interface SubjectsService {
-    ResponseEntity<?> saveSubject(SubjectDTO subjectDTO);
+    Subject saveSubject(SubjectDTO subjectDTO);
+
+    List<Subject> getAll();
 }

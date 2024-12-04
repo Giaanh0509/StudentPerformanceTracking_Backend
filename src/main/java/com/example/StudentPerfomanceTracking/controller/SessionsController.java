@@ -15,7 +15,7 @@ public class SessionsController {
     UsersService usersService;
 
     @PostMapping("/")
-    public ResponseEntity<?> registerUser(@Validated @RequestBody User user) {
+    public ResponseEntity<?> registerUser(@RequestBody User user) {
         ResponseEntity<?> response = usersService.registerUser(user);
         return response;
     }

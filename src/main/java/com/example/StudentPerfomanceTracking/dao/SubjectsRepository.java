@@ -9,4 +9,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 @CrossOrigin(origins = "http://localhost:3000")
 @RepositoryRestResource (path = "subjects")
 public interface SubjectsRepository extends JpaRepository<Subject, Integer> {
+    Subject findSubjectById(int id);
+
 }

@@ -36,10 +36,9 @@ public class Skill {
 
     }
 
-    public Skill(String name, Subject subject, Skill parentSkillId, String description, String formula) {
+    public Skill(String name, Subject subject, String description, String formula) {
         this.name = name;
         this.subject = subject;
-        this.parentSkillId = parentSkillId;
         this.description = description;
         this.formula = formula;
     }

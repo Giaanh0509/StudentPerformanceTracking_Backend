@@ -9,5 +9,7 @@ import java.util.List;
 public interface SubjectsService {
     Subject saveSubject(SubjectDTO subjectDTO);
 
+    Subject findSubjectById(int id);
+
     List<Subject> getAll();
 }

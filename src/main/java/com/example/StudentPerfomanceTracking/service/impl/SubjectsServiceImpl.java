@@ -20,9 +20,15 @@ public class SubjectsServiceImpl implements SubjectsService {
 
     @Override
     public Subject saveSubject(SubjectDTO subjectDTO) {
-        Subject subject = new Subject(subjectDTO.getName());
+        System.out.println(subjectDTO.getCreateDate());
+        Subject subject = new Subject(subjectDTO.getName(), subjectDTO.getCreateDate());
         subjectsRepository.save(subject);
         return subject;
+    }
+
+    @Override
+    public Subject findSubjectById(int id) {
+        return subjectsRepository.findSubjectById(id);
     }
 
     @Override

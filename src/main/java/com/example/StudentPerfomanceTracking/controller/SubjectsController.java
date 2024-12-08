@@ -22,4 +22,9 @@ public class SubjectsController {
     public Subject createNewSubject(@RequestBody SubjectDTO subjectDTO) {
         return subjectsService.saveSubject(subjectDTO);
     }
+
+    @GetMapping("/{id}")
+    public Subject getSubjectById(@PathVariable int id) {
+        return subjectsService.findSubjectById(id);
+    }
 }

@@ -2,7 +2,8 @@ package com.example.StudentPerfomanceTracking.service;
 
 import com.example.StudentPerfomanceTracking.dto.SkillDTO;
 import com.example.StudentPerfomanceTracking.entity.Skill;
+import org.springframework.http.ResponseEntity;
 
 public interface SkillsService {
-    Skill saveSkill(SkillDTO skillDTO);
+    ResponseEntity<SkillDTO> saveSkill(SkillDTO skillDTO);
 }

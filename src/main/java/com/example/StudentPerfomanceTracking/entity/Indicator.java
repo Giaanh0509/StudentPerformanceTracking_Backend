@@ -22,9 +22,9 @@ public class Indicator {
     @Column(length = 50)
     private String evaluationType;
 
-    private Double scaleMin;
+    private double scaleMin;
 
-    private Double scaleMax;
+    private double scaleMax;
 
     @OneToMany(mappedBy = "indicator")
     private Set<Objective> objectives;
@@ -32,12 +32,76 @@ public class Indicator {
     public Indicator() {
     }
 
-    public Indicator(String name, Skill skill, String evaluationType, Double scaleMin, Double scaleMax, Set<Objective> objectives) {
+    public Indicator(String name, Skill skill, String evaluationType, double scaleMin, double scaleMax) {
         this.name = name;
         this.skill = skill;
         this.evaluationType = evaluationType;
         this.scaleMin = scaleMin;
         this.scaleMax = scaleMax;
+    }
+
+    public Indicator(String name, Skill skill, String evaluationType, double scaleMin, double scaleMax, Set<Objective> objectives) {
+        this.name = name;
+        this.skill = skill;
+        this.evaluationType = evaluationType;
+        this.scaleMin = scaleMin;
+        this.scaleMax = scaleMax;
+        this.objectives = objectives;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Skill getSkill() {
+        return skill;
+    }
+
+    public void setSkill(Skill skill) {
+        this.skill = skill;
+    }
+
+    public String getEvaluationType() {
+        return evaluationType;
+    }
+
+    public void setEvaluationType(String evaluationType) {
+        this.evaluationType = evaluationType;
+    }
+
+    public double getScaleMin() {
+        return scaleMin;
+    }
+
+    public void setScaleMin(double scaleMin) {
+        this.scaleMin = scaleMin;
+    }
+
+    public double getScaleMax() {
+        return scaleMax;
+    }
+
+    public void setScaleMax(double scaleMax) {
+        this.scaleMax = scaleMax;
+    }
+
+    public Set<Objective> getObjectives() {
+        return objectives;
+    }
+
+    public void setObjectives(Set<Objective> objectives) {
         this.objectives = objectives;
     }
 }

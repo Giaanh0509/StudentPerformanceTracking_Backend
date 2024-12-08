@@ -1,5 +1,7 @@
 package com.example.StudentPerfomanceTracking.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class SkillDTO {
     private int id;
 
@@ -9,7 +11,14 @@ public class SkillDTO {
 
     private String description;
 
+    private boolean children;
+
+    private String createDate;
+
     private int subjectId;
+
+    @JsonProperty("parentSkillId")
+    private int parentSkillId;
 
     public SkillDTO() {
     }
@@ -59,5 +68,29 @@ public class SkillDTO {
 
     public void setSubjectId(int subjectId) {
         this.subjectId = subjectId;
+    }
+
+    public boolean getChildren() {
+        return children;
+    }
+
+    public void setChildren(boolean childrenSkill) {
+        this.children = childrenSkill;
+    }
+
+    public String getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(String createDate) {
+        this.createDate = createDate;
+    }
+
+    public int getParentSkillId() {
+        return parentSkillId;
+    }
+
+    public void setParentSkillId(int parentSkillId) {
+        this.parentSkillId = parentSkillId;
     }
 }

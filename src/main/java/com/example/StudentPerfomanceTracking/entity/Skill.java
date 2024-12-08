@@ -32,6 +32,12 @@ public class Skill {
     @OneToMany(mappedBy = "skill", cascade = CascadeType.ALL)
     private Set<Indicator> indicators;
 
+    @Column(name = "children_skill")
+    private boolean childrenSkill;
+
+    @Column(name = "create_date")
+    private String createDate;
+
     public Skill() {
 
     }
@@ -41,6 +47,25 @@ public class Skill {
         this.subject = subject;
         this.description = description;
         this.formula = formula;
+    }
+
+    public Skill(String name, Subject subject, String description, String formula, boolean childrenSkill, String createDate) {
+        this.name = name;
+        this.subject = subject;
+        this.description = description;
+        this.formula = formula;
+        this.childrenSkill = childrenSkill;
+        this.createDate = createDate;
+    }
+
+    public Skill(String name, Subject subject, Skill parentSkillId, String description, String formula, boolean childrenSkill, String createDate) {
+        this.name = name;
+        this.subject = subject;
+        this.parentSkillId = parentSkillId;
+        this.description = description;
+        this.formula = formula;
+        this.childrenSkill = childrenSkill;
+        this.createDate = createDate;
     }
 
     public int getId() {
@@ -89,5 +114,37 @@ public class Skill {
 
     public void setFormula(String formula) {
         this.formula = formula;
+    }
+
+    public Skill getParentSkillId() {
+        return parentSkillId;
+    }
+
+    public void setParentSkillId(Skill parentSkillId) {
+        this.parentSkillId = parentSkillId;
+    }
+
+    public Set<Indicator> getIndicators() {
+        return indicators;
+    }
+
+    public void setIndicators(Set<Indicator> indicators) {
+        this.indicators = indicators;
+    }
+
+    public boolean isChildrenSkill() {
+        return childrenSkill;
+    }
+
+    public void setChildrenSkill(boolean childrenSkill) {
+        this.childrenSkill = childrenSkill;
+    }
+
+    public String getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(String createDate) {
+        this.createDate = createDate;
     }
 }

@@ -7,6 +7,7 @@ import com.example.StudentPerfomanceTracking.entity.Skill;
 import com.example.StudentPerfomanceTracking.entity.Subject;
 import com.example.StudentPerfomanceTracking.service.SkillsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,10 +22,19 @@ public class SkillsServiceImpl implements SkillsService {
     SubjectsRepository subjectsRepository;
 
     @Override
-    public Skill saveSkill(SkillDTO skillDTO) {
+    public ResponseEntity<SkillDTO> saveSkill(SkillDTO skillDTO) {
         Subject subject = subjectsRepository.findSubjectById(skillDTO.getSubjectId());
-        Skill skill = new Skill(skillDTO.getName(), subject, skillDTO.getDescription(), skillDTO.getFormula());
-        skillsRepository.save(skill);
-        return skill;
+
+        if(skillDTO.getParentSkillId() == 0) {
+            Skill skill = new Skill(skillDTO.getName(), subject, skillDTO.getDescription(), skillDTO.getFormula(), skillDTO.getChildren(), skillDTO.getCreateDate());
+            skillsRepository.save(skill);
+            skillDTO.setId(skill.getId());
+        } else {
+            Skill skill = new Skill(skillDTO.getName(), subject, skillDTO.getDescription(), skillDTO.getFormula(), skillDTO.getChildren(), skillDTO.getCreateDate());
+            skillsRepository.save(skill);
+            skillDTO.setId(skill.getId());
+        }
+
+        return ResponseEntity.ok(skillDTO);
     }
 }

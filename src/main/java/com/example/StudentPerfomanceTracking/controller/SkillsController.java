@@ -7,6 +7,7 @@ import com.example.StudentPerfomanceTracking.entity.Subject;
 import com.example.StudentPerfomanceTracking.service.SkillsService;
 import com.example.StudentPerfomanceTracking.service.SubjectsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +20,7 @@ public class SkillsController {
     SkillsService skillsService;
 
     @PostMapping("/new")
-    public Skill createNewSkill(@RequestBody SkillDTO skillDTO) {
+    public ResponseEntity<SkillDTO> createNewSkill(@RequestBody SkillDTO skillDTO) {
         return skillsService.saveSkill(skillDTO);
     }
 }

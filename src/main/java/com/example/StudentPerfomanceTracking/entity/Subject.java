@@ -2,6 +2,7 @@ package com.example.StudentPerfomanceTracking.entity;
 
 import jakarta.persistence.*;
 
+import java.util.Date;
 import java.util.Set;
 
 @Entity
@@ -15,6 +16,9 @@ public class Subject {
     @Column(name = "name")
     private String name;
 
+    @Column(name = "create_date")
+    private String createDate;
+
     @OneToMany(mappedBy = "subject", cascade = CascadeType.ALL)
     private Set<Skill> skills;
 
@@ -22,9 +26,11 @@ public class Subject {
 
     }
 
-    public Subject(String name) {
+    public Subject(String name, String createDate) {
         this.name = name;
+        this.createDate = createDate;
     }
+
 
     public int getId() {
         return id;
@@ -48,5 +54,13 @@ public class Subject {
 
     public void setSkills(Set<Skill> skills) {
         this.skills = skills;
+    }
+
+    public String getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(String createDate) {
+        this.createDate = createDate;
     }
 }

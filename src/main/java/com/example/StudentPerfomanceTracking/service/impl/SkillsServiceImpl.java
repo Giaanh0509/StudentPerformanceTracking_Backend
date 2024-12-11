@@ -30,7 +30,8 @@ public class SkillsServiceImpl implements SkillsService {
             skillsRepository.save(skill);
             skillDTO.setId(skill.getId());
         } else {
-            Skill skill = new Skill(skillDTO.getName(), subject, skillDTO.getDescription(), skillDTO.getFormula(), skillDTO.getChildren(), skillDTO.getCreateDate());
+            Skill parentSkill = skillsRepository.findSkillById(skillDTO.getParentSkillId());
+            Skill skill = new Skill(skillDTO.getName(), subject, parentSkill,skillDTO.getDescription(), skillDTO.getFormula(), skillDTO.getChildren(), skillDTO.getCreateDate());
             skillsRepository.save(skill);
             skillDTO.setId(skill.getId());
         }

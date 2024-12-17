@@ -9,6 +9,8 @@ public class SubjectDTO {
 
     private String createDate;
 
+    private int userId;
+
     public SubjectDTO() {
     }
 
@@ -38,5 +40,13 @@ public class SubjectDTO {
 
     public void setCreateDate(String createDate) {
         this.createDate = createDate;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 }

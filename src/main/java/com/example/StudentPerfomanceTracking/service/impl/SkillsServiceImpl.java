@@ -35,7 +35,7 @@ public class SkillsServiceImpl implements SkillsService {
             skillsRepository.save(skill);
             skillDTO.setId(skill.getId());
         }
-
+    
         return ResponseEntity.ok(skillDTO);
     }
 }

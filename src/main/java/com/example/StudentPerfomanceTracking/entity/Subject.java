@@ -22,6 +22,10 @@ public class Subject {
     @OneToMany(mappedBy = "subject", cascade = CascadeType.ALL)
     private Set<Skill> skills;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private User user;
+
     public Subject() {
 
     }
@@ -31,6 +35,11 @@ public class Subject {
         this.createDate = createDate;
     }
 
+    public Subject(String name, String createDate, User user) {
+        this.name = name;
+        this.createDate = createDate;
+        this.user = user;
+    }
 
     public int getId() {
         return id;

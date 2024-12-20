@@ -25,7 +25,16 @@ public class Student {
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
     private Set<StudentGroup> studentGroups;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private User user;
+
     public Student() {
+    }
+
+    public Student(String name, User user) {
+        this.name = name;
+        this.user = user;
     }
 
     public Student(String name, Set<Tracking> trackings, Objective objective, Set<StudentGroup> studentGroups) {
@@ -73,5 +82,13 @@ public class Student {
 
     public void setStudentGroups(Set<StudentGroup> studentGroups) {
         this.studentGroups = studentGroups;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

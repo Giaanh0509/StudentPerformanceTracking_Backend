@@ -15,8 +15,15 @@ public class Group {
     @Column(length = 255)
     private String name;
 
+    @Column(length = 255)
+    private String description;
+
     @OneToMany(mappedBy = "group", cascade = CascadeType.ALL)
     private Set<StudentGroup> studentGroups;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private User user;
 
     public Group() {
     }
@@ -24,6 +31,12 @@ public class Group {
     public Group(String name, Set<StudentGroup> studentGroups) {
         this.name = name;
         this.studentGroups = studentGroups;
+    }
+
+    public Group(String name, String description, User user) {
+        this.name = name;
+        this.description = description;
+        this.user = user;
     }
 
     public int getId() {
@@ -48,5 +61,21 @@ public class Group {
 
     public void setStudentGroups(Set<StudentGroup> studentGroups) {
         this.studentGroups = studentGroups;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

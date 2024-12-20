@@ -1,27 +1,26 @@
 package com.example.StudentPerfomanceTracking.dto;
 
-import java.util.Date;
-
-public class SubjectDTO {
+public class GroupDTO {
     private int id;
 
     private String name;
 
-    private String createDate;
+    private String description;
 
     private int userId;
 
-    public SubjectDTO() {
+    public GroupDTO() {
     }
 
-    public SubjectDTO(String name) {
-        this.name = name;
-    }
-
-    public SubjectDTO(int id, String name, String createDate, int userId) {
+    public GroupDTO(int id, String name, String description, int userId) {
         this.id = id;
         this.name = name;
-        this.createDate = createDate;
+        this.description = description;
+        this.userId = userId;
+    }
+
+    public GroupDTO(String name, int userId) {
+        this.name = name;
         this.userId = userId;
     }
 
@@ -41,19 +40,19 @@ public class SubjectDTO {
         this.name = name;
     }
 
-    public String getCreateDate() {
-        return createDate;
-    }
-
-    public void setCreateDate(String createDate) {
-        this.createDate = createDate;
-    }
-
     public int getUserId() {
         return userId;
     }
 
     public void setUserId(int userId) {
         this.userId = userId;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

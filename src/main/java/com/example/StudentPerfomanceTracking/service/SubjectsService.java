@@ -10,6 +10,6 @@ public interface SubjectsService {
     Subject saveSubject(SubjectDTO subjectDTO);
 
     Subject findSubjectById(int id);
-
+    List<SubjectDTO> findSubjectByUserId(int userId);
     List<Subject> getAll();
 }

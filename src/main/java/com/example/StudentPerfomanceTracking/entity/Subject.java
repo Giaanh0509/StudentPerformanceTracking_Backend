@@ -72,4 +72,12 @@ public class Subject {
     public void setCreateDate(String createDate) {
         this.createDate = createDate;
     }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }

@@ -17,6 +17,13 @@ public class StudentDTO {
         this.userId = userId;
     }
 
+    public StudentDTO(int id, String name, int userId, int groupId) {
+        this.id = id;
+        this.name = name;
+        this.userId = userId;
+        this.groupId = groupId;
+    }
+
     public StudentDTO(String name, int userId) {
         this.name = name;
         this.userId = userId;

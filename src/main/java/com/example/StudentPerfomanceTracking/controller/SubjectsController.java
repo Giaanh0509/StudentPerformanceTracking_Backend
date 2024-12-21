@@ -16,7 +16,7 @@ import java.util.List;
 public class SubjectsController {
 
     @Autowired
-    SubjectsService subjectsService;
+    private SubjectsService subjectsService;
 
     @PostMapping("/new")
     public Subject createNewSubject(@RequestBody SubjectDTO subjectDTO) {

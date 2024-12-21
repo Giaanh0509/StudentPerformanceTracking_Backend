@@ -11,4 +11,6 @@ import java.util.List;
 @RepositoryRestResource
 public interface GroupsRepository extends JpaRepository<Group, Integer> {
     List<Group> findSubjectByUserId(int userId);
+
+    Group findGroupById(int userId);
 }

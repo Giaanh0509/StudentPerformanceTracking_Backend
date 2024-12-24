@@ -13,6 +13,9 @@ public class Objective {
     @Column(name = "id")
     private int id;
 
+    @Column(length = 255)
+    private String name;
+
     @Column(name = "start_date")
     private Date startDate;
 

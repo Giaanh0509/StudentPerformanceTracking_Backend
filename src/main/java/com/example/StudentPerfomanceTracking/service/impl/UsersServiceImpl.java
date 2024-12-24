@@ -77,7 +77,7 @@ public class UsersServiceImpl implements UsersService {
                 if (user.isPresent()) {
                     Role role = rolesRepository.findById(usersRepository.findRoleIdByUsername(loginDTO.getUsername()));
                     String token = jwtUntils.generateToken(loginDTO.getUsername(), role.getName(), user1.getId());
-                    UserLoginDTO userLoginDTO = new UserLoginDTO(user1.getId(), loginDTO.getUsername());
+                    UserLoginDTO userLoginDTO = new UserLoginDTO(user1.getId(), loginDTO.getUsername(), role.getId());
                     return new AuthResponse(token, true, userLoginDTO);
                 } else {
                     return new AuthResponse("Login Failed", false);

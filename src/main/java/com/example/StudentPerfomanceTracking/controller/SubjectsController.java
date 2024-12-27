@@ -23,6 +23,11 @@ public class SubjectsController {
         return subjectsService.saveSubject(subjectDTO);
     }
 
+    @GetMapping("/all")
+    public List<SubjectDTO> getAllSubjects() {
+        return subjectsService.getAllSubjects();
+    }
+
     @GetMapping("/userId={userId}")
     public List<SubjectDTO> getSubjectByUserId(@PathVariable int userId) {
         return subjectsService.findSubjectByUserId(userId);

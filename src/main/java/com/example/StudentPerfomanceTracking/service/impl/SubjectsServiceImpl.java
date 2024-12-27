@@ -35,6 +35,24 @@ public class SubjectsServiceImpl implements SubjectsService {
     }
 
     @Override
+    public List<SubjectDTO> getAllSubjects() {
+        List<Subject> subjectList = subjectsRepository.findAll();
+        List<SubjectDTO> subjectDTOList = new ArrayList<>();
+        for (Subject subject: subjectList) {
+            SubjectDTO subjectDTO = new SubjectDTO(
+                    subject.getId(),
+                    subject.getName(),
+                    subject.getCreateDate(),
+                    subject.getUser().getId()
+            );
+
+            subjectDTOList.add(subjectDTO);
+        }
+
+        return subjectDTOList;
+    }
+
+    @Override
     public Subject findSubjectById(int id) {
         return subjectsRepository.findSubjectById(id);
     }

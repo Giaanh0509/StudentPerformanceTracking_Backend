@@ -7,6 +7,8 @@ public class GroupDTO {
 
     private String description;
 
+    private String createDate;
+
     private int userId;
 
     public GroupDTO() {
@@ -16,6 +18,14 @@ public class GroupDTO {
         this.id = id;
         this.name = name;
         this.description = description;
+        this.userId = userId;
+    }
+
+    public GroupDTO(int id, String name, String description, String createDate, int userId) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.createDate = createDate;
         this.userId = userId;
     }
 
@@ -54,5 +64,13 @@ public class GroupDTO {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(String createDate) {
+        this.createDate = createDate;
     }
 }

@@ -26,7 +26,7 @@ public class GroupsServiceImpl implements GroupsService {
     @Override
     public Group saveGroup(GroupDTO groupDTO) {
         User user = usersRepository.findById(groupDTO.getUserId());
-        Group group = new Group(groupDTO.getName(), groupDTO.getDescription(), user);
+        Group group = new Group(groupDTO.getName(), groupDTO.getDescription(), groupDTO.getCreateDate(), user);
         groupsRepository.save(group);
         return group;
     }
@@ -40,6 +40,7 @@ public class GroupsServiceImpl implements GroupsService {
                     group.getId(),
                     group.getName(),
                     group.getDescription(),
+                    group.getCreateDate(),
                     group.getUser().getId()
             );
 

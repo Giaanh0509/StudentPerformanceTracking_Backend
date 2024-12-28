@@ -18,6 +18,9 @@ public class Group {
     @Column(length = 255)
     private String description;
 
+    @Column(name = "create_date")
+    private String createDate;
+
     @OneToMany(mappedBy = "group", cascade = CascadeType.ALL)
     private Set<StudentGroup> studentGroups;
 
@@ -36,6 +39,13 @@ public class Group {
     public Group(String name, String description, User user) {
         this.name = name;
         this.description = description;
+        this.user = user;
+    }
+
+    public Group(String name, String description, String createDate, User user) {
+        this.name = name;
+        this.description = description;
+        this.createDate = createDate;
         this.user = user;
     }
 
@@ -77,5 +87,13 @@ public class Group {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(String createDate) {
+        this.createDate = createDate;
     }
 }

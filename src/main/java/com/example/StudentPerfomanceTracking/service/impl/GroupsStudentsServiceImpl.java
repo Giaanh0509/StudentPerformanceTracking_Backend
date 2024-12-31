@@ -29,7 +29,7 @@ public class GroupsStudentsServiceImpl implements GroupsStudentsService {
         List<StudentDTO> studentDTOList = new ArrayList<>();
         for(StudentGroup studentGroup: studentGroupList) {
             Student student = studentsRepository.findStudentById(studentGroup.getStudent().getId());
-            StudentDTO studentDTO = new StudentDTO(student.getId(), student.getName(), student.getUser().getId(), groupId);
+            StudentDTO studentDTO = new StudentDTO(student.getId(), student.getName(), student.getDateOfBirth(), student.getEmail(), student.getUser().getId(), groupId);
 
             studentDTOList.add(studentDTO);
         }

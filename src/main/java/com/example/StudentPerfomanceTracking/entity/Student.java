@@ -15,6 +15,12 @@ public class Student {
     @Column(length = 255)
     private String name;
 
+    @Column(length = 255)
+    private String dateOfBirth;
+
+    @Column(length = 255)
+    private String email;
+
     @OneToMany(mappedBy = "student")
     private Set<Tracking> trackings;
 
@@ -34,6 +40,13 @@ public class Student {
 
     public Student(String name, User user) {
         this.name = name;
+        this.user = user;
+    }
+
+    public Student(String name, String dateOfBirth, String email, User user) {
+        this.name = name;
+        this.dateOfBirth = dateOfBirth;
+        this.email = email;
         this.user = user;
     }
 
@@ -90,5 +103,21 @@ public class Student {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public String getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

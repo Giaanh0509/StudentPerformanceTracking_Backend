@@ -2,7 +2,12 @@ package com.example.StudentPerfomanceTracking.dto;
 
 public class StudentDTO {
     private int id;
+
     private String name;
+
+    private String dateOfBirth;
+
+    private String email;
 
     private int userId;
 
@@ -22,6 +27,23 @@ public class StudentDTO {
         this.name = name;
         this.userId = userId;
         this.groupId = groupId;
+    }
+
+    public StudentDTO(int id, String name, String dateOfBirth, String email, int userId, int groupId) {
+        this.id = id;
+        this.name = name;
+        this.dateOfBirth = dateOfBirth;
+        this.email = email;
+        this.userId = userId;
+        this.groupId = groupId;
+    }
+
+    public StudentDTO(int id, String name, String dateOfBirth, String email, int userId) {
+        this.id = id;
+        this.name = name;
+        this.dateOfBirth = dateOfBirth;
+        this.email = email;
+        this.userId = userId;
     }
 
     public StudentDTO(String name, int userId) {
@@ -59,5 +81,21 @@ public class StudentDTO {
 
     public void setGroupId(int groupId) {
         this.groupId = groupId;
+    }
+
+    public String getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

@@ -35,7 +35,7 @@ public class StudentsServiceImpl implements StudentsService {
     @Override
     public Student saveStudent(StudentDTO studentDTO) {
         User user = usersRepository.findById(studentDTO.getUserId());
-        Student student = new Student(studentDTO.getName(), user);
+        Student student = new Student(studentDTO.getName(), studentDTO.getDateOfBirth(), studentDTO.getEmail(), user);
         Group group = groupsRepository.findGroupById(studentDTO.getGroupId());
         StudentGroup studentGroup = new StudentGroup(student, group);
         studentsRepository.save(student);
@@ -51,6 +51,8 @@ public class StudentsServiceImpl implements StudentsService {
             StudentDTO studentDTO = new StudentDTO(
                     student.getId(),
                     student.getName(),
+                    student.getDateOfBirth(),
+                    student.getEmail(),
                     student.getUser().getId()
             );
 

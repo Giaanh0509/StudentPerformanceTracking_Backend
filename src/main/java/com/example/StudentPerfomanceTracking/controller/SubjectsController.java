@@ -32,4 +32,6 @@ public class SubjectsController {
     public List<SubjectDTO> getSubjectByUserId(@PathVariable int userId) {
         return subjectsService.findSubjectByUserId(userId);
     }
+
+    @GetMapping("/subjectId={subjectId}")
 }

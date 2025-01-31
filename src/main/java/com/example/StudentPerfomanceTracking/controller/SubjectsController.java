@@ -34,4 +34,7 @@ public class SubjectsController {
     }
 
     @GetMapping("/subjectId={subjectId}")
+    public Subject getSubjectById(@PathVariable int subjectId) {
+        return subjectsService.findSubjectById(subjectId);
+    }
 }

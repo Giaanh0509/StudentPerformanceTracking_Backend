@@ -53,8 +53,13 @@ public class SubjectsServiceImpl implements SubjectsService {
     }
 
     @Override
-    public Subject findSubjectById(int id) {
-        return subjectsRepository.findSubjectById(id);
+    public SubjectDTO findSubjectById(int id) {
+        Subject subject = subjectsRepository.findSubjectById(id);
+        SubjectDTO subjectDTO = new SubjectDTO(subject.getId(),
+                subject.getName(),
+                subject.getCreateDate(),
+                subject.getUser().getId());
+        return subjectDTO;
     }
 
     @Override

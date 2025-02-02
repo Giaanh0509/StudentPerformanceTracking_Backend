@@ -18,6 +18,8 @@ public class IndicatorDTO {
 
     private int skillId;
 
+    private String skillName;
+
     public IndicatorDTO() {
     }
 
@@ -28,6 +30,16 @@ public class IndicatorDTO {
         this.scaleMax = scaleMax;
         this.evaluationType = evaluationType;
         this.skillId = skillId;
+    }
+
+    public IndicatorDTO(int id, String name, double scaleMin, double scaleMax, String evaluationType, int skillId, String skillName) {
+        this.id = id;
+        this.name = name;
+        this.scaleMin = scaleMin;
+        this.scaleMax = scaleMax;
+        this.evaluationType = evaluationType;
+        this.skillId = skillId;
+        this.skillName = skillName;
     }
 
     public int getId() {
@@ -76,5 +88,13 @@ public class IndicatorDTO {
 
     public void setSkillId(int skillId) {
         this.skillId = skillId;
+    }
+
+    public String getSkillName() {
+        return skillName;
+    }
+
+    public void setSkillName(String skillName) {
+        this.skillName = skillName;
     }
 }

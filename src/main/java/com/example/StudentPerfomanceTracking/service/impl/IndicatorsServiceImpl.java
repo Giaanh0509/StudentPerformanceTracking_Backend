@@ -39,7 +39,8 @@ public class IndicatorsServiceImpl implements IndicatorsService {
                 indicator.getScaleMin(),
                 indicator.getScaleMax(),
                 indicator.getEvaluationType(),
-                indicator.getSkill().getId());
+                indicator.getSkill().getId(),
+                indicator.getSkill().getName());
 
         return indicatorDTO;
     }

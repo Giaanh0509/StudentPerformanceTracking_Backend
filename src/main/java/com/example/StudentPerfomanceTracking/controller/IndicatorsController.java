@@ -21,7 +21,13 @@ public class IndicatorsController {
     }
 
     @GetMapping("/all")
-    List<IndicatorDTO> getIndicatorBySkillId() {
+    public List<IndicatorDTO> getIndicatorByAll() {
         return indicatorsService.findAll();
+    }
+
+    @GetMapping("/skillId={skillId}")
+    public IndicatorDTO getIndicatorBySkillId(@PathVariable int skillId) {
+        if(indicatorsService.findBySkillId(skillId) == null) return null;
+        return indicatorsService.findBySkillId(skillId);
     }
 }

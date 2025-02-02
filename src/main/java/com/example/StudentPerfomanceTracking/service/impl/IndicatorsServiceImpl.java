@@ -32,8 +32,16 @@ public class IndicatorsServiceImpl implements IndicatorsService {
     }
 
     @Override
-    public Indicator findBySkillId(int id) {
-        return indicatorsRepository.findBySkillId(id);
+    public IndicatorDTO findBySkillId(int id) {
+        Indicator indicator =  indicatorsRepository.findBySkillId(id);
+        IndicatorDTO indicatorDTO = new IndicatorDTO(indicator.getId(),
+                indicator.getName(),
+                indicator.getScaleMin(),
+                indicator.getScaleMax(),
+                indicator.getEvaluationType(),
+                indicator.getSkill().getId());
+
+        return indicatorDTO;
     }
 
     @Override

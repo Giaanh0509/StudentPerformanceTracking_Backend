@@ -8,7 +8,7 @@ import java.util.List;
 public interface IndicatorsService {
     Indicator saveIndicator(IndicatorDTO indicatorDTO);
 
-    Indicator findBySkillId(int id);
+    IndicatorDTO findBySkillId(int id);
 
     List<IndicatorDTO> findAll();
 }

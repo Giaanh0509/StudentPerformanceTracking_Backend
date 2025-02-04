@@ -27,7 +27,7 @@ public class Indicator {
     private double scaleMax;
 
     @OneToMany(mappedBy = "indicator")
-    private Set<Objective> objectives;
+    private Set<ObjectiveDetail> objectiveDetails;
 
     public Indicator() {
     }
@@ -40,13 +40,13 @@ public class Indicator {
         this.scaleMax = scaleMax;
     }
 
-    public Indicator(String name, Skill skill, String evaluationType, double scaleMin, double scaleMax, Set<Objective> objectives) {
+    public Indicator(String name, Skill skill, String evaluationType, double scaleMin, double scaleMax, Set<ObjectiveDetail> objectives) {
         this.name = name;
         this.skill = skill;
         this.evaluationType = evaluationType;
         this.scaleMin = scaleMin;
         this.scaleMax = scaleMax;
-        this.objectives = objectives;
+        this.objectiveDetails = objectives;
     }
 
     public int getId() {
@@ -97,11 +97,12 @@ public class Indicator {
         this.scaleMax = scaleMax;
     }
 
-    public Set<Objective> getObjectives() {
-        return objectives;
+    public Set<ObjectiveDetail> getObjectiveDetails() {
+        return objectiveDetails;
     }
 
-    public void setObjectives(Set<Objective> objectives) {
-        this.objectives = objectives;
+    public void setObjectiveDetails(Set<ObjectiveDetail> objectiveDetails) {
+        this.objectiveDetails = objectiveDetails;
     }
 }
+

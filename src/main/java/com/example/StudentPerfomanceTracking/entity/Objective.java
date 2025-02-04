@@ -16,31 +16,48 @@ public class Objective {
     @Column(length = 255)
     private String name;
 
-    @Column(name = "start_date")
-    private Date startDate;
-
-    @Column(name = "end_date")
-    private Date endDate;
-
-    @ManyToOne
-    @JoinColumn(name = "indicator_id", referencedColumnName = "id")
-    private Indicator indicator;
+    @Column
+    private int userId;
 
     @OneToMany(mappedBy = "objective", cascade = CascadeType.ALL)
-    private Set <Student> students;
-
-    double start_value;
-
-    double objective_value;
+    private Set<ObjectiveDetail> objectiveDetails;
 
     public Objective() {
     }
 
-    public Objective(Date startDate, Date endDate, Indicator indicator, double start_value, double objective_value) {
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.indicator = indicator;
-        this.start_value = start_value;
-        this.objective_value = objective_value;
+    public Objective(String name) {
+        this.name = name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public Set<ObjectiveDetail> getObjectiveDetails() {
+        return objectiveDetails;
+    }
+
+    public void setObjectiveDetails(Set<ObjectiveDetail> objectiveDetails) {
+        this.objectiveDetails = objectiveDetails;
     }
 }

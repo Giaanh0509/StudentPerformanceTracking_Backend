@@ -24,10 +24,6 @@ public class Student {
     @OneToMany(mappedBy = "student")
     private Set<Tracking> trackings;
 
-    @ManyToOne
-    @JoinColumn(name = "objective_id", referencedColumnName = "id")
-    private Objective objective;
-
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
     private Set<StudentGroup> studentGroups;
 
@@ -50,10 +46,9 @@ public class Student {
         this.user = user;
     }
 
-    public Student(String name, Set<Tracking> trackings, Objective objective, Set<StudentGroup> studentGroups) {
+    public Student(String name, Set<Tracking> trackings, Set<StudentGroup> studentGroups) {
         this.name = name;
         this.trackings = trackings;
-        this.objective = objective;
         this.studentGroups = studentGroups;
     }
 
@@ -79,14 +74,6 @@ public class Student {
 
     public void setTrackings(Set<Tracking> trackings) {
         this.trackings = trackings;
-    }
-
-    public Objective getObjective() {
-        return objective;
-    }
-
-    public void setObjective(Objective objective) {
-        this.objective = objective;
     }
 
     public Set<StudentGroup> getStudentGroups() {

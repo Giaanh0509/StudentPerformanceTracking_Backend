@@ -1,6 +1,7 @@
 package com.example.StudentPerfomanceTracking.controller;
 
 import com.example.StudentPerfomanceTracking.dto.SubjectDTO;
+import com.example.StudentPerfomanceTracking.dto.SubjectTeacherDTO;
 import com.example.StudentPerfomanceTracking.entity.Subject;
 import com.example.StudentPerfomanceTracking.entity.User;
 import com.example.StudentPerfomanceTracking.service.SubjectsService;
@@ -24,7 +25,7 @@ public class SubjectsController {
     }
 
     @GetMapping("/all")
-    public List<SubjectDTO> getAllSubjects() {
+    public List<SubjectTeacherDTO> getAllSubjects() {
         return subjectsService.getAllSubjects();
     }
 

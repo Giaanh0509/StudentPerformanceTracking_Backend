@@ -18,12 +18,22 @@ public class StudentObjective {
     @JoinColumn(name = "objective_id", referencedColumnName = "id")
     private Objective objective;
 
+    @ManyToOne
+    @JoinColumn(name = "group_id", referencedColumnName = "id")
+    private Group group;
+
     public StudentObjective() {
     }
 
     public StudentObjective(Student student, Objective objective) {
         this.student = student;
         this.objective = objective;
+    }
+
+    public StudentObjective(Student student, Objective objective, Group group) {
+        this.student = student;
+        this.objective = objective;
+        this.group = group;
     }
 
     public int getId() {

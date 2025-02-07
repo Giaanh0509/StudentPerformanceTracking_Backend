@@ -3,62 +3,49 @@ package com.example.StudentPerfomanceTracking.dto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class ObjectiveDTO {
+    private String name;
 
-    @JsonProperty("start_value")
-    private double startValue;
+    private String subject;
 
-    @JsonProperty("objective_value")
-    private double objectiveValue;
+    private String group;
 
-    @JsonProperty("start_date")
-    private String startDate;
-
-    @JsonProperty("end_date")
-    private String endDate;
-
-    @JsonProperty("indicator_id")
-    private int indicatorId;
-
-    public ObjectiveDTO() {
+    public ObjectiveDTO(String name) {
+        this.name = name;
     }
 
-    public double getStartValue() {
-        return startValue;
+    public ObjectiveDTO(String name, String subject) {
+        this.name = name;
+        this.subject = subject;
     }
 
-    public void setStartValue(double startValue) {
-        this.startValue = startValue;
+    public ObjectiveDTO(String name, String subject, String group) {
+        this.name = name;
+        this.subject = subject;
+        this.group = group;
     }
 
-    public double getObjectiveValue() {
-        return objectiveValue;
+    public String getName() {
+        return name;
     }
 
-    public void setObjectiveValue(double objectiveValue) {
-        this.objectiveValue = objectiveValue;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getStartDate() {
-        return startDate;
+    public String getSubject() {
+        return subject;
     }
 
-    public void setStartDate(String startDate) {
-        this.startDate = startDate;
+    public void setSubject(String subject) {
+        this.subject = subject;
     }
 
-    public String getEndDate() {
-        return endDate;
+    public String getGroup() {
+        return group;
     }
 
-    public void setEndDate(String endDate) {
-        this.endDate = endDate;
+    public void setGroup(String group) {
+        this.group = group;
     }
 
-    public int getIndicatorId() {
-        return indicatorId;
-    }
-
-    public void setIndicatorId(int indicatorId) {
-        this.indicatorId = indicatorId;
-    }
 }

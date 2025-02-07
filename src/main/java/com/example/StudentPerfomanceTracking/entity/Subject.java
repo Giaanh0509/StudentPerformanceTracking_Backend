@@ -22,6 +22,9 @@ public class Subject {
     @OneToMany(mappedBy = "subject", cascade = CascadeType.ALL)
     private Set<Skill> skills;
 
+    @OneToMany(mappedBy = "subject", cascade = CascadeType.ALL)
+    private Set<Objective> objectives;
+
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;

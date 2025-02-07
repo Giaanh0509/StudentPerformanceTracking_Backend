@@ -4,6 +4,7 @@ import com.example.StudentPerfomanceTracking.dao.SubjectsRepository;
 import com.example.StudentPerfomanceTracking.dao.UsersRepository;
 import com.example.StudentPerfomanceTracking.dto.IndicatorDTO;
 import com.example.StudentPerfomanceTracking.dto.SubjectDTO;
+import com.example.StudentPerfomanceTracking.dto.SubjectTeacherDTO;
 import com.example.StudentPerfomanceTracking.entity.Indicator;
 import com.example.StudentPerfomanceTracking.entity.Subject;
 import com.example.StudentPerfomanceTracking.entity.User;
@@ -35,15 +36,15 @@ public class SubjectsServiceImpl implements SubjectsService {
     }
 
     @Override
-    public List<SubjectDTO> getAllSubjects() {
+    public List<SubjectTeacherDTO> getAllSubjects() {
         List<Subject> subjectList = subjectsRepository.findAll();
-        List<SubjectDTO> subjectDTOList = new ArrayList<>();
+        List<SubjectTeacherDTO> subjectDTOList = new ArrayList<>();
         for (Subject subject: subjectList) {
-            SubjectDTO subjectDTO = new SubjectDTO(
+            SubjectTeacherDTO subjectDTO = new SubjectTeacherDTO(
                     subject.getId(),
                     subject.getName(),
                     subject.getCreateDate(),
-                    subject.getUser().getId()
+                    subject.getUser().getUsername()
             );
 
             subjectDTOList.add(subjectDTO);

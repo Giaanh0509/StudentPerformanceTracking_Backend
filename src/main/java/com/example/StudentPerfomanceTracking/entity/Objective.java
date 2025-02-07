@@ -16,17 +16,36 @@ public class Objective {
     @Column(length = 255)
     private String name;
 
-    @Column
-    private int userId;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private User user;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "subject_id", referencedColumnName = "id")
+    private Subject subject;
 
     @OneToMany(mappedBy = "objective", cascade = CascadeType.ALL)
     private Set<ObjectiveDetail> objectiveDetails;
+
+    @OneToMany(mappedBy = "objective", cascade = CascadeType.ALL)
+    private Set<StudentObjective> studentObjectives;
 
     public Objective() {
     }
 
     public Objective(String name) {
         this.name = name;
+    }
+
+    public Objective(String name, User user, Subject subject) {
+        this.name = name;
+        this.user = user;
+        this.subject = subject;
+    }
+
+    public Objective(String name, Subject subject) {
+        this.name = name;
+        this.subject = subject;
     }
 
     public int getId() {
@@ -45,19 +64,27 @@ public class Objective {
         this.name = name;
     }
 
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
     public Set<ObjectiveDetail> getObjectiveDetails() {
         return objectiveDetails;
     }
 
     public void setObjectiveDetails(Set<ObjectiveDetail> objectiveDetails) {
         this.objectiveDetails = objectiveDetails;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Subject getSubject() {
+        return subject;
+    }
+
+    public void setSubject(Subject subject) {
+        this.subject = subject;
     }
 }

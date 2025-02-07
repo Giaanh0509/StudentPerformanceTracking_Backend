@@ -27,6 +27,9 @@ public class Student {
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
     private Set<StudentGroup> studentGroups;
 
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
+    private Set<StudentObjective> studentObjectives;
+
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;

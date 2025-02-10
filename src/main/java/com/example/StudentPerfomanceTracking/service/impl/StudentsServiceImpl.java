@@ -60,4 +60,17 @@ public class StudentsServiceImpl implements StudentsService {
         }
         return studentDTOList;
     }
+
+    @Override
+    public Student saveNewListStudent(List<StudentDTO> studentDTOList) {
+        for(StudentDTO studentDTO: studentDTOList) {
+            User user = usersRepository.findById(studentDTO.getUserId());
+            Student student = new Student(studentDTO.getName(), studentDTO.getDateOfBirth(), studentDTO.getEmail(), user);
+            Group group = groupsRepository.findGroupById(studentDTO.getGroupId());
+            StudentGroup studentGroup = new StudentGroup(student, group);
+            studentsRepository.save(student);
+            studentsGroupsRepository.save(studentGroup);
+        }
+        return null;
+    }
 }

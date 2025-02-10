@@ -20,6 +20,12 @@ public class StudentsController {
         return studentsService.saveStudent(studentDTO);
     }
 
+    @PostMapping("/newList")
+    public void createNewListStudent(@RequestBody List<StudentDTO> studentDTOList) {
+        studentsService.saveNewListStudent(studentDTOList);
+        return;
+    }
+
     @GetMapping("/userId={userId}")
     public List<StudentDTO> getStudentByUserId(@PathVariable int userId) {
         return studentsService.findStudentByUserId(userId);

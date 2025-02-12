@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -46,6 +47,16 @@ public class GroupsServiceImpl implements GroupsService {
 
             groupDTOList.add(groupDTO);
         }
+
         return groupDTOList;
+    }
+
+    @Override
+    public void deleteGroupById(int groupId) {
+        if (groupsRepository.existsById(groupId)) {
+            groupsRepository.deleteById(groupId);
+        } else {
+            throw new RuntimeException("Group với ID " + groupId + " không tồn tại.");
+        }
     }
 }

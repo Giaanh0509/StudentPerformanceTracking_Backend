@@ -9,4 +9,6 @@ public interface GroupsService {
     Group saveGroup(GroupDTO groupDTO);
 
     List<GroupDTO> findGroupByUserId(int userId);
+
+    void deleteGroupById(int groupId);
 }

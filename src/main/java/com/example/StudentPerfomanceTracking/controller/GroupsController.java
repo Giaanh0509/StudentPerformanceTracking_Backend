@@ -24,4 +24,10 @@ public class GroupsController {
     public List<GroupDTO> getSubjectByUserId(@PathVariable int userId) {
         return groupsService.findGroupByUserId(userId);
     }
+
+    @GetMapping("/delete/{groupId}")
+    public String deleteGroup(@PathVariable int groupId) {
+        groupsService.deleteGroupById(groupId);
+        return "Group với ID " + groupId + " đã được xóa.";
+    }
 }

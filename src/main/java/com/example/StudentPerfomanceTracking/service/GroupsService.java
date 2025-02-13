@@ -11,4 +11,6 @@ public interface GroupsService {
     List<GroupDTO> findGroupByUserId(int userId);
 
     void deleteGroupById(int groupId);
+
+    Group updateGroup(int groupId, GroupDTO groupDTO);
 }

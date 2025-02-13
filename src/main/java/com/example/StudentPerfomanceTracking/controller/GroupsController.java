@@ -5,6 +5,7 @@ import com.example.StudentPerfomanceTracking.dto.SubjectDTO;
 import com.example.StudentPerfomanceTracking.entity.Group;
 import com.example.StudentPerfomanceTracking.service.GroupsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,6 +29,14 @@ public class GroupsController {
     @GetMapping("/delete/{groupId}")
     public String deleteGroup(@PathVariable int groupId) {
         groupsService.deleteGroupById(groupId);
-        return "Group với ID " + groupId + " đã được xóa.";
+        return null;
+    }
+
+    @PutMapping("/edit/{groupId}")
+    public ResponseEntity<Group> updateGroup(
+            @PathVariable int groupId,
+            @RequestBody GroupDTO groupDTO) {
+        Group updatedGroup = groupsService.updateGroup(groupId, groupDTO);
+        return ResponseEntity.ok(updatedGroup);
     }
 }

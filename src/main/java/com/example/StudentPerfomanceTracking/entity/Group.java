@@ -21,7 +21,7 @@ public class Group {
     @Column(name = "create_date")
     private String createDate;
 
-    @OneToMany(mappedBy = "group", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "group", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<StudentGroup> studentGroups;
 
     @OneToMany(mappedBy = "group", cascade = CascadeType.ALL)

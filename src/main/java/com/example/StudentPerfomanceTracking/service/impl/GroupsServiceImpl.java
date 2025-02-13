@@ -1,6 +1,7 @@
 package com.example.StudentPerfomanceTracking.service.impl;
 
 import com.example.StudentPerfomanceTracking.dao.GroupsRepository;
+import com.example.StudentPerfomanceTracking.dao.StudentsGroupsRepository;
 import com.example.StudentPerfomanceTracking.dao.UsersRepository;
 import com.example.StudentPerfomanceTracking.dto.GroupDTO;
 import com.example.StudentPerfomanceTracking.entity.Group;
@@ -20,6 +21,9 @@ public class GroupsServiceImpl implements GroupsService {
 
     @Autowired
     GroupsRepository groupsRepository;
+
+    @Autowired
+    StudentsGroupsRepository studentsGroupsRepository;
 
     @Autowired
     UsersRepository usersRepository;
@@ -53,10 +57,20 @@ public class GroupsServiceImpl implements GroupsService {
 
     @Override
     public void deleteGroupById(int groupId) {
-        if (groupsRepository.existsById(groupId)) {
-            groupsRepository.deleteById(groupId);
-        } else {
+        if (!groupsRepository.existsById(groupId)) {
             throw new RuntimeException("Group với ID " + groupId + " không tồn tại.");
         }
+
+        groupsRepository.deleteById(groupId);
+    }
+
+    @Override
+    public Group updateGroup(int groupId, GroupDTO groupDTO) {
+        Group existingGroup = groupsRepository.findGroupById(groupId);
+
+        existingGroup.setName(groupDTO.getName());
+        existingGroup.setDescription(groupDTO.getDescription());
+
+        return groupsRepository.save(existingGroup);
     }
 }

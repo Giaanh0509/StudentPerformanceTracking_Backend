@@ -17,4 +17,6 @@ public interface StudentsGroupsRepository extends JpaRepository<StudentGroup, In
 
     @Query("SELECT sg.student FROM StudentGroup sg WHERE sg.group.id = :groupId")
     List<Student> findStudentId(@Param("groupId") int groupId);
+
+    void deleteByGroupId(int groupId);
 }

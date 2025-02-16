@@ -9,6 +9,8 @@ public class ObjectiveDTO {
 
     private String group;
 
+    private String createDate;
+
     public ObjectiveDTO(String name) {
         this.name = name;
     }
@@ -22,6 +24,13 @@ public class ObjectiveDTO {
         this.name = name;
         this.subject = subject;
         this.group = group;
+    }
+
+    public ObjectiveDTO(String name, String subject, String group, String createDate) {
+        this.name = name;
+        this.subject = subject;
+        this.group = group;
+        this.createDate = createDate;
     }
 
     public String getName() {
@@ -48,4 +57,11 @@ public class ObjectiveDTO {
         this.group = group;
     }
 
+    public String getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(String createDate) {
+        this.createDate = createDate;
+    }
 }

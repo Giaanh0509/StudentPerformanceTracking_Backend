@@ -84,4 +84,13 @@ public class SubjectsServiceImpl implements SubjectsService {
     public List<Subject> getAll() {
         return subjectsRepository.findAll();
     }
+
+    @Override
+    public void deleteSubjectById(int subjectId) {
+        if (!subjectsRepository.existsById(subjectId)) {
+            throw new RuntimeException("Subject với Id " + subjectId + " không tồn tại.");
+        }
+
+        subjectsRepository.deleteSubjectById(subjectId);
+    }
 }

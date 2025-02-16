@@ -16,6 +16,9 @@ public class Objective {
     @Column(length = 255)
     private String name;
 
+    @Column
+    private String createDate;
+
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
@@ -43,10 +46,19 @@ public class Objective {
         this.subject = subject;
     }
 
+    public Objective(String name, String createDate, User user, Subject subject) {
+        this.name = name;
+        this.createDate = createDate;
+        this.user = user;
+        this.subject = subject;
+    }
+
     public Objective(String name, Subject subject) {
         this.name = name;
         this.subject = subject;
     }
+
+
 
     public int getId() {
         return id;
@@ -86,5 +98,13 @@ public class Objective {
 
     public void setSubject(Subject subject) {
         this.subject = subject;
+    }
+
+    public String getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(String createDate) {
+        this.createDate = createDate;
     }
 }

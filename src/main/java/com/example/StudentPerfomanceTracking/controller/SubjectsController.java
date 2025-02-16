@@ -38,4 +38,11 @@ public class SubjectsController {
     public SubjectDTO getSubjectById(@PathVariable int subjectId) {
         return subjectsService.findSubjectById(subjectId);
     }
+
+    @GetMapping("/delete/{subjectId}")
+    public String deleteGroup(@PathVariable int subjectId) {
+        subjectsService.deleteSubjectById(subjectId);
+        System.out.println(subjectId);
+        return null;
+    }
 }

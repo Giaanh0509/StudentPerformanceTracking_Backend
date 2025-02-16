@@ -39,11 +39,11 @@ public class ObjectivesServiceImpl implements ObjectivesService {
     UsersRepository usersRepository;
 
     @Override
-    public void saveObjective(int groupId, int subjectId, int userId, String objectiveName, List<ObjectiveDetailDTO> objectiveDetailDTOList) {
+    public void saveObjective(int groupId, String createDate, int subjectId, int userId, String objectiveName, List<ObjectiveDetailDTO> objectiveDetailDTOList) {
         Group group = groupsRepository.findGroupById(groupId);
         Subject subject = subjectsRepository.findSubjectById(subjectId);
         User user = usersRepository.findById(userId);
-        Objective objective = new Objective(objectiveName, user, subject);
+        Objective objective = new Objective(objectiveName, createDate, user, subject);
         objectivesRepository.save(objective);
 
         List<Student> studentIdList = studentsGroupsRepository.findStudentId(groupId);
@@ -66,7 +66,7 @@ public class ObjectivesServiceImpl implements ObjectivesService {
         for(Objective objective: objectiveList) {
             Subject subject = subjectsRepository.findSubjectById(objective.getSubject().getId());
             Group group = studentsObjectivesRepository.findGroupByObjectiveId(objective.getId());
-            ObjectiveDTO objectiveDTO = new ObjectiveDTO(objective.getName(), subject.getName(), group.getName());
+            ObjectiveDTO objectiveDTO = new ObjectiveDTO(objective.getName(), subject.getName(), group.getName(), objective.getCreateDate());
 
             objectiveDTOList.add(objectiveDTO);
         }

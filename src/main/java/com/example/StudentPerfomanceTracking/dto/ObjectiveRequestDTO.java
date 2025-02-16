@@ -7,6 +7,7 @@ public class ObjectiveRequestDTO {
     private String objectiveName;
     private int subject_id;
     private int user_id;
+    private String createDate;
     private List<ObjectiveDetailDTO> objectives;
 
     public int getGroup_id() {
@@ -47,6 +48,14 @@ public class ObjectiveRequestDTO {
 
     public void setUser_id(int user_id) {
         this.user_id = user_id;
+    }
+
+    public String getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(String createDate) {
+        this.createDate = createDate;
     }
 }
 

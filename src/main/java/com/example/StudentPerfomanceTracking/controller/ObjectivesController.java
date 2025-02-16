@@ -21,10 +21,11 @@ public class ObjectivesController {
         int groupId = requestDTO.getGroup_id();
         int subjectId = requestDTO.getSubject_id();
         int userId = requestDTO.getUser_id();
+        String createDate = requestDTO.getCreateDate();
         String objectiveName = requestDTO.getObjectiveName();
         List<ObjectiveDetailDTO> objectives = requestDTO.getObjectives();
 
-        objectivesService.saveObjective(groupId, subjectId, userId, objectiveName, objectives);
+        objectivesService.saveObjective(groupId, createDate, subjectId, userId, objectiveName, objectives);
     }
 
     @GetMapping("/userId={userId}")

@@ -45,4 +45,12 @@ public class SubjectsController {
         System.out.println(subjectId);
         return null;
     }
+
+    @PutMapping("/update/{subjectId}")
+    public Subject updateSubject(@RequestBody SubjectDTO subjectDTO) {
+        System.out.println(subjectDTO.getId());
+        System.out.println(subjectDTO.getName());
+        System.out.println(subjectDTO.getDescription());
+        return subjectsService.updateSubject(subjectDTO);
+    }
 }

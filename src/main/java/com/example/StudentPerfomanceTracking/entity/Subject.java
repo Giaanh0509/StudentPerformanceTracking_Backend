@@ -19,6 +19,9 @@ public class Subject {
     @Column(name = "create_date")
     private String createDate;
 
+    @Column(name = "description")
+    private String description;
+
     @OneToMany(mappedBy = "subject", cascade = CascadeType.ALL)
     private Set<Skill> skills;
 
@@ -41,6 +44,13 @@ public class Subject {
     public Subject(String name, String createDate, User user) {
         this.name = name;
         this.createDate = createDate;
+        this.user = user;
+    }
+
+    public Subject(String name, String createDate, String description, User user) {
+        this.name = name;
+        this.createDate = createDate;
+        this.description = description;
         this.user = user;
     }
 
@@ -82,5 +92,13 @@ public class Subject {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

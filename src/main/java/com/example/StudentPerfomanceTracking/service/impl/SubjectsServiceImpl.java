@@ -30,7 +30,7 @@ public class SubjectsServiceImpl implements SubjectsService {
     @Override
     public Subject saveSubject(SubjectDTO subjectDTO) {
         User user = usersRepository.findById(subjectDTO.getUserId());
-        Subject subject = new Subject(subjectDTO.getName(), subjectDTO.getCreateDate(), user);
+        Subject subject = new Subject(subjectDTO.getName(), subjectDTO.getCreateDate(), subjectDTO.getDescription(), user);
         subjectsRepository.save(subject);
         return subject;
     }
@@ -92,5 +92,15 @@ public class SubjectsServiceImpl implements SubjectsService {
         }
 
         subjectsRepository.deleteSubjectById(subjectId);
+    }
+
+    @Override
+    public Subject updateSubject(SubjectDTO subjectDTO) {
+        Subject existingSubject = subjectsRepository.findSubjectById(subjectDTO.getId());
+        existingSubject.setName(subjectDTO.getName());
+        existingSubject.setDescription(subjectDTO.getDescription());
+
+        subjectsRepository.save(existingSubject);
+        return existingSubject;
     }
 }

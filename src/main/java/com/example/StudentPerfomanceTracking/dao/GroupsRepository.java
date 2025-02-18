@@ -15,7 +15,7 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:3000")
 public interface GroupsRepository extends JpaRepository<Group, Integer> {
     @Query("SELECT g FROM Group g WHERE g.user.id = :userId ORDER BY g.id DESC")
-    List<Group> findSubjectByUserId(@Param("userId") int userId);
+    List<Group> findGroupByUserId(@Param("userId") int userId);
 
     Group findGroupById(int userId);
 

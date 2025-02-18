@@ -38,7 +38,7 @@ public class GroupsServiceImpl implements GroupsService {
 
     @Override
     public List<GroupDTO> findGroupByUserId(int userId) {
-        List<Group> groupList = groupsRepository.findSubjectByUserId(userId);
+        List<Group> groupList = groupsRepository.findGroupByUserId(userId);
         List<GroupDTO> groupDTOList = new ArrayList<>();
         for (Group group : groupList) {
             GroupDTO groupDTO = new GroupDTO(

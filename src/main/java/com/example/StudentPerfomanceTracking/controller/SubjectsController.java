@@ -40,7 +40,7 @@ public class SubjectsController {
     }
 
     @GetMapping("/delete/{subjectId}")
-    public String deleteGroup(@PathVariable int subjectId) {
+    public String deleteSubject(@PathVariable int subjectId) {
         subjectsService.deleteSubjectById(subjectId);
         System.out.println(subjectId);
         return null;

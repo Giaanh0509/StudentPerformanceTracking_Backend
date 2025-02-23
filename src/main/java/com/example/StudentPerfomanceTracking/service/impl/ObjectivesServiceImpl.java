@@ -7,11 +7,13 @@ import com.example.StudentPerfomanceTracking.entity.*;
 import com.example.StudentPerfomanceTracking.service.ObjectivesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@Transactional
 public class ObjectivesServiceImpl implements ObjectivesService {
 
     @Autowired
@@ -66,11 +68,20 @@ public class ObjectivesServiceImpl implements ObjectivesService {
         for(Objective objective: objectiveList) {
             Subject subject = subjectsRepository.findSubjectById(objective.getSubject().getId());
             Group group = studentsObjectivesRepository.findGroupByObjectiveId(objective.getId());
-            ObjectiveDTO objectiveDTO = new ObjectiveDTO(objective.getName(), subject.getName(), group.getName(), objective.getCreateDate());
+            ObjectiveDTO objectiveDTO = new ObjectiveDTO(objective.getId(), objective.getName(), subject.getName(), group.getName(), objective.getCreateDate());
 
             objectiveDTOList.add(objectiveDTO);
         }
 
         return objectiveDTOList;
+    }
+
+    @Override
+    public void deleteObjective(int objectiveId) {
+        if (!objectivesRepository.existsById(objectiveId)) {
+            throw new RuntimeException("Objective với Id " + objectiveId + " không tồn tại.");
+        }
+
+        objectivesRepository.deleteObjectiveById(objectiveId);
     }
 }

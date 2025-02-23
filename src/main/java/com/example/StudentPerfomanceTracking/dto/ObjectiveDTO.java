@@ -3,6 +3,8 @@ package com.example.StudentPerfomanceTracking.dto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class ObjectiveDTO {
+    private int id;
+
     private String name;
 
     private String subject;
@@ -27,6 +29,14 @@ public class ObjectiveDTO {
     }
 
     public ObjectiveDTO(String name, String subject, String group, String createDate) {
+        this.name = name;
+        this.subject = subject;
+        this.group = group;
+        this.createDate = createDate;
+    }
+
+    public ObjectiveDTO(int id, String name, String subject, String group, String createDate) {
+        this.id = id;
         this.name = name;
         this.subject = subject;
         this.group = group;
@@ -63,5 +73,13 @@ public class ObjectiveDTO {
 
     public void setCreateDate(String createDate) {
         this.createDate = createDate;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

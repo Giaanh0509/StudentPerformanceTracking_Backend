@@ -9,4 +9,5 @@ public interface ObjectivesService {
     void saveObjective(int groupId, String createDate, int subjectId, int userId, String objectiveName, List<ObjectiveDetailDTO> objectiveDetailDTOList);
     List<ObjectiveDTO> findObjectivesByUserId(int userId);
     void deleteObjective(int objectiveId);
+    ObjectiveDTO findObjectiveById(int objectiveId);
 }

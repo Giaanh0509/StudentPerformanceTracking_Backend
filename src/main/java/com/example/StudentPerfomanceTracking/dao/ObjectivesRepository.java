@@ -18,4 +18,5 @@ public interface ObjectivesRepository extends JpaRepository<Objective, Integer> 
     @Modifying
     @Query("DELETE FROM Objective o WHERE o.id = :id")
     void deleteObjectiveById(int id);
+    Objective findObjectiveById(int objectiveId);
 }

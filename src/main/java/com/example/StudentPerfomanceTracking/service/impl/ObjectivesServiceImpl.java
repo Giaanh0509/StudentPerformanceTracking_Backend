@@ -1,6 +1,7 @@
 package com.example.StudentPerfomanceTracking.service.impl;
 
 import com.example.StudentPerfomanceTracking.dao.*;
+import com.example.StudentPerfomanceTracking.dto.IndicatorDTO;
 import com.example.StudentPerfomanceTracking.dto.ObjectiveDTO;
 import com.example.StudentPerfomanceTracking.dto.ObjectiveDetailDTO;
 import com.example.StudentPerfomanceTracking.entity.*;
@@ -83,5 +84,28 @@ public class ObjectivesServiceImpl implements ObjectivesService {
         }
 
         objectivesRepository.deleteObjectiveById(objectiveId);
+    }
+
+    @Override
+    public ObjectiveDTO findObjectiveById(int objectiveId) {
+        Objective objective = objectivesRepository.findObjectiveById(objectiveId);
+        Group group = studentsObjectivesRepository.findGroupByObjectiveId(objectiveId);
+        Subject subject = subjectsRepository.findSubjectById(objective.getSubject().getId());
+        List<Indicator> indicators = objectivesDetailsRepository.findIndicatorsByObjectiveId(objectiveId);
+        List<IndicatorDTO> indicatorDTOList = new ArrayList<>();
+
+        for (Indicator indicator : indicators) {
+            IndicatorDTO indicatorDTO = new IndicatorDTO(
+                    indicator.getId(),
+                    indicator.getName(),
+                    indicator.getScaleMin(),
+                    indicator.getScaleMax(),
+                    indicator.getEvaluationType(),
+                    indicator.getSkill().getId(),
+                    indicator.getSkill().getName());
+            indicatorDTOList.add(indicatorDTO);
+        }
+        ObjectiveDTO objectiveDTO = new ObjectiveDTO(objective.getId(), objective.getName(), subject.getName(), group.getName(), objective.getCreateDate(), indicatorDTOList);
+        return objectiveDTO;
     }
 }

@@ -2,6 +2,8 @@ package com.example.StudentPerfomanceTracking.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.List;
+
 public class ObjectiveDTO {
     private int id;
 
@@ -12,6 +14,8 @@ public class ObjectiveDTO {
     private String group;
 
     private String createDate;
+
+    private List<IndicatorDTO> indicators;
 
     public ObjectiveDTO(String name) {
         this.name = name;
@@ -41,6 +45,15 @@ public class ObjectiveDTO {
         this.subject = subject;
         this.group = group;
         this.createDate = createDate;
+    }
+
+    public ObjectiveDTO(int id, String name, String subject, String group, String createDate, List<IndicatorDTO> indicators) {
+        this.id = id;
+        this.name = name;
+        this.subject = subject;
+        this.group = group;
+        this.createDate = createDate;
+        this.indicators = indicators;
     }
 
     public String getName() {
@@ -81,5 +94,13 @@ public class ObjectiveDTO {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public List<IndicatorDTO> getIndicatorDTOList() {
+        return indicators;
+    }
+
+    public void setIndicatorDTOList(List<IndicatorDTO> indicators) {
+        this.indicators = indicators;
     }
 }

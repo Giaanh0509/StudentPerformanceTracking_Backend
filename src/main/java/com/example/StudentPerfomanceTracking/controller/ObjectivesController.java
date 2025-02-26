@@ -33,6 +33,11 @@ public class ObjectivesController {
        return objectivesService.findObjectivesByUserId(userId);
     }
 
+    @GetMapping("/objectiveId={objectiveId}")
+    public ObjectiveDTO getObjectiveById (@PathVariable int objectiveId) {
+        return objectivesService.findObjectiveById(objectiveId);
+    }
+
     @GetMapping("/delete/objectiveId={objectiveId}")
     public String deleteSubject(@PathVariable int objectiveId) {
         objectivesService.deleteObjective(objectiveId);

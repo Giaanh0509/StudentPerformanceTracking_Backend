@@ -43,4 +43,5 @@ public class ObjectivesController {
         objectivesService.deleteObjective(objectiveId);
         return null;
     }
+
 }

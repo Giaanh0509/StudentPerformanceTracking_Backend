@@ -1,9 +1,6 @@
 package com.example.StudentPerfomanceTracking.service.impl;
 
-import com.example.StudentPerfomanceTracking.dao.GroupsRepository;
-import com.example.StudentPerfomanceTracking.dao.StudentsGroupsRepository;
-import com.example.StudentPerfomanceTracking.dao.StudentsRepository;
-import com.example.StudentPerfomanceTracking.dao.UsersRepository;
+import com.example.StudentPerfomanceTracking.dao.*;
 import com.example.StudentPerfomanceTracking.dto.StudentDTO;
 import com.example.StudentPerfomanceTracking.dto.SubjectDTO;
 import com.example.StudentPerfomanceTracking.entity.*;
@@ -30,6 +27,9 @@ public class StudentsServiceImpl implements StudentsService {
 
     @Autowired
     StudentsGroupsRepository studentsGroupsRepository;
+
+    @Autowired
+    StudentsObjectivesRepository studentsObjectivesRepository;
 
 
     @Override
@@ -72,5 +72,23 @@ public class StudentsServiceImpl implements StudentsService {
             studentsGroupsRepository.save(studentGroup);
         }
         return null;
+    }
+
+    @Override
+    public List<StudentDTO> findStudentByObjectiveId(int objectiveId) {
+        List<Student> studentList = studentsObjectivesRepository.findStudentsByObjectiveId(objectiveId);
+        List<StudentDTO> studentDTOList = new ArrayList<>();
+        for (Student student : studentList) {
+            StudentDTO studentDTO = new StudentDTO(
+                    student.getId(),
+                    student.getName(),
+                    student.getDateOfBirth(),
+                    student.getEmail(),
+                    student.getUser().getId()
+            );
+
+            studentDTOList.add(studentDTO);
+        }
+        return studentDTOList;
     }
 }

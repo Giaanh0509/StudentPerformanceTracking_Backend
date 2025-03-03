@@ -30,4 +30,9 @@ public class StudentsController {
     public List<StudentDTO> getStudentByUserId(@PathVariable int userId) {
         return studentsService.findStudentByUserId(userId);
     }
+
+    @GetMapping("/objectiveId={objectiveId}")
+    public List<StudentDTO> getStudentByObjectiveId(@PathVariable int objectiveId) {
+        return studentsService.findStudentByObjectiveId(objectiveId);
+    }
 }

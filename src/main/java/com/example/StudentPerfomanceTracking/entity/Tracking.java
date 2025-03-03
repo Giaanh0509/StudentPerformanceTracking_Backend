@@ -12,16 +12,51 @@ public class Tracking {
     @Column(name = "id")
     private int id;
 
+    @Column
+    private String name;
+
     @Column(name = "tracking_date")
     private Date trackingDate;
-
-    @ManyToOne
-    @JoinColumn(name = "student_id", referencedColumnName = "id")
-    private Student student;
 
     @ManyToOne
     @JoinColumn(name = "objective_id", referencedColumnName = "id")
     private Objective objective;
 
-    private Double trackingValue;
+    public Tracking(String name, Date trackingDate, Objective objective) {
+        this.name = name;
+        this.trackingDate = trackingDate;
+        this.objective = objective;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Date getTrackingDate() {
+        return trackingDate;
+    }
+
+    public void setTrackingDate(Date trackingDate) {
+        this.trackingDate = trackingDate;
+    }
+
+    public Objective getObjective() {
+        return objective;
+    }
+
+    public void setObjective(Objective objective) {
+        this.objective = objective;
+    }
 }

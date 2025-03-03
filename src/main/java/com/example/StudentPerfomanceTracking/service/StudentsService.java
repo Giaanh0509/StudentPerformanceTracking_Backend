@@ -10,4 +10,5 @@ public interface StudentsService {
     Student saveStudent(StudentDTO studentDTO);
     List<StudentDTO> findStudentByUserId(int userId);
     Student saveNewListStudent(List<StudentDTO> studentDTOList);
+    List<StudentDTO> findStudentByObjectiveId(int objectiveId);
 }

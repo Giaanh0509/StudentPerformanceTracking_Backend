@@ -21,9 +21,6 @@ public class Student {
     @Column(length = 255)
     private String email;
 
-    @OneToMany(mappedBy = "student")
-    private Set<Tracking> trackings;
-
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
     private Set<StudentGroup> studentGroups;
 
@@ -49,9 +46,8 @@ public class Student {
         this.user = user;
     }
 
-    public Student(String name, Set<Tracking> trackings, Set<StudentGroup> studentGroups) {
+    public Student(String name, Set<StudentGroup> studentGroups) {
         this.name = name;
-        this.trackings = trackings;
         this.studentGroups = studentGroups;
     }
 
@@ -69,14 +65,6 @@ public class Student {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Set<Tracking> getTrackings() {
-        return trackings;
-    }
-
-    public void setTrackings(Set<Tracking> trackings) {
-        this.trackings = trackings;
     }
 
     public Set<StudentGroup> getStudentGroups() {

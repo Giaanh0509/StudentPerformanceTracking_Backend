@@ -29,6 +29,9 @@ public class Indicator {
     @OneToMany(mappedBy = "indicator")
     private Set<ObjectiveDetail> objectiveDetails;
 
+    @OneToMany(mappedBy = "indicator")
+    private Set<TrackingDetail> trackingDetails;
+
     public Indicator() {
     }
 

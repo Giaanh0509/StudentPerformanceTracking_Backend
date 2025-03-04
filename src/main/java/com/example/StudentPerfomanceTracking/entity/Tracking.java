@@ -3,6 +3,7 @@ package com.example.StudentPerfomanceTracking.entity;
 import jakarta.persistence.*;
 
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "trackings")
@@ -15,16 +16,19 @@ public class Tracking {
     @Column
     private String name;
 
-    @Column(name = "tracking_date")
-    private Date trackingDate;
+    @Column(name = "create_date")
+    private String create_date;
 
     @ManyToOne
     @JoinColumn(name = "objective_id", referencedColumnName = "id")
     private Objective objective;
 
-    public Tracking(String name, Date trackingDate, Objective objective) {
+    @OneToMany(mappedBy = "tracking", cascade = CascadeType.ALL)
+    private Set<TrackingDetail> trackingDetails;
+
+    public Tracking(String name, String create_date, Objective objective) {
         this.name = name;
-        this.trackingDate = trackingDate;
+        this.create_date = create_date;
         this.objective = objective;
     }
 
@@ -44,12 +48,12 @@ public class Tracking {
         this.name = name;
     }
 
-    public Date getTrackingDate() {
-        return trackingDate;
+    public String getTrackingDate() {
+        return create_date;
     }
 
-    public void setTrackingDate(Date trackingDate) {
-        this.trackingDate = trackingDate;
+    public void setTrackingDate(String create_date) {
+        this.create_date = create_date;
     }
 
     public Objective getObjective() {

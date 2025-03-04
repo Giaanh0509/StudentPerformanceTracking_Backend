@@ -31,6 +31,9 @@ public class Student {
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
+    private Set<TrackingDetail> trackingDetails;
+
     public Student() {
     }
 

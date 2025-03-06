@@ -26,6 +26,9 @@ public class Tracking {
     @OneToMany(mappedBy = "tracking", cascade = CascadeType.ALL)
     private Set<TrackingDetail> trackingDetails;
 
+    public Tracking() {
+    }
+
     public Tracking(String name, String create_date, Objective objective) {
         this.name = name;
         this.create_date = create_date;
@@ -48,7 +51,7 @@ public class Tracking {
         this.name = name;
     }
 
-    public String getTrackingDate() {
+    public String getCreateDate() {
         return create_date;
     }
 

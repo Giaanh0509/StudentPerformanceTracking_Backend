@@ -9,7 +9,8 @@ public class TrackingDTO {
 
     private int objectiveId;
 
-    public TrackingDTO(String name, String createDate, int objectiveId) {
+    public TrackingDTO(int id, String name, String createDate, int objectiveId) {
+        this.id = id;
         this.name = name;
         this.createDate = createDate;
         this.objectiveId = objectiveId;

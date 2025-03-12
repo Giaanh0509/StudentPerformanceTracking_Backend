@@ -12,4 +12,8 @@ public interface TrackingsService {
     List<TrackingDTO> getTrackingByObjectiveId(int objectiveId);
 
     void saveTrackingDetails(TrackingRequestDTO trackingRequestDTO);
+
+    boolean checkTracking(int trackingId, int indicatorId);
+
+    List<Double> getTrackingValue(int trackingId, int indicatorId);
 }

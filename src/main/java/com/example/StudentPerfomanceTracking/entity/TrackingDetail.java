@@ -28,6 +28,9 @@ public class TrackingDetail {
     @JoinColumn(name = "indicator_id", referencedColumnName = "id")
     private Indicator indicator;
 
+    public TrackingDetail() {
+    }
+
     public TrackingDetail(double trackingValue, String trackingDate, Student student, Tracking tracking, Indicator indicator) {
         this.trackingValue = trackingValue;
         this.trackingDate = trackingDate;

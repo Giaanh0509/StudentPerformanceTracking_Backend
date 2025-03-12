@@ -28,9 +28,21 @@ public class TrackingsController {
         return trackingsService.getTrackingByObjectiveId(objectiveId);
     }
 
+    @GetMapping("/trackingId={trackingId}/indicatorId={indicatorId}")
+    public List<Double> getTrackingValue(@PathVariable("trackingId") int trackingId,
+                                         @PathVariable("indicatorId") int indicatorId) {
+        return trackingsService.getTrackingValue(trackingId, indicatorId);
+    }
+
     @PostMapping("/newDetails")
     public void createNewTrackingDetails(@RequestBody TrackingRequestDTO trackingRequestDTO) {
         trackingsService.saveTrackingDetails(trackingRequestDTO);
         return;
+    }
+
+    @GetMapping("/{trackingId}/indicators/{indicatorId}/exists")
+    public boolean checkTracking(@PathVariable("trackingId") int trackingId,
+                                 @PathVariable("indicatorId") int indicatorId) {
+        return trackingsService.checkTracking(trackingId, indicatorId);
     }
 }

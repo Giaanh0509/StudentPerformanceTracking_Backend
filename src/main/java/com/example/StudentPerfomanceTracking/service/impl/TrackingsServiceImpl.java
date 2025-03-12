@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -82,5 +83,25 @@ public class TrackingsServiceImpl implements TrackingsService {
 
             trackingDetailsRepository.save(trackingDetail);
         }
+    }
+
+    @Override
+    public boolean checkTracking(int trackingId, int indicatorId) {
+        List<TrackingDetail> detail = trackingDetailsRepository.findByTrackingIdAndIndicatorId(trackingId, indicatorId);
+        if (detail.isEmpty()) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    @Override
+    public List<Double> getTrackingValue(int trackingId, int indicatorId) {
+        List<TrackingDetail> detail = trackingDetailsRepository.findByTrackingIdAndIndicatorId(trackingId, indicatorId);
+        List<Double> doubleList = new ArrayList<>();
+        for (TrackingDetail trackingDetail : detail) {
+            doubleList.add(trackingDetail.getTrackingValue());
+        }
+        return doubleList;
     }
 }

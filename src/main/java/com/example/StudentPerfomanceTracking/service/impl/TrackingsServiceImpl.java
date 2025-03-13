@@ -1,6 +1,7 @@
 package com.example.StudentPerfomanceTracking.service.impl;
 
 import com.example.StudentPerfomanceTracking.dao.*;
+import com.example.StudentPerfomanceTracking.dto.StudentTrackingUpdateDTO;
 import com.example.StudentPerfomanceTracking.dto.TrackingDTO;
 import com.example.StudentPerfomanceTracking.dto.TrackingDetailsDTO;
 import com.example.StudentPerfomanceTracking.dto.TrackingRequestDTO;
@@ -12,7 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Transactional
@@ -37,7 +37,11 @@ public class TrackingsServiceImpl implements TrackingsService {
     public Tracking saveTracking(TrackingDTO trackingDTO) {
         Objective objective = objectivesRepository.findObjectiveById(trackingDTO.getObjectiveId());
         Tracking tracking;
-        tracking = new Tracking(trackingDTO.getName(), trackingDTO.getCreateDate(), objective);
+        tracking = new Tracking(trackingDTO.getName(),
+                trackingDTO.getCreateDate(),
+                trackingDTO.getTrackingDate(),
+                trackingDTO.getDescription(),
+                objective);
         trackingsRepository.save(tracking);
         return tracking;
     }
@@ -52,6 +56,7 @@ public class TrackingsServiceImpl implements TrackingsService {
                     tracking.getId(),
                     tracking.getName(),
                     tracking.getCreateDate(),
+                    tracking.getTrackingDate(),
                     tracking.getObjective().getId());
 
             trackingDTOList.add(trackingDTO);
@@ -103,5 +108,20 @@ public class TrackingsServiceImpl implements TrackingsService {
             doubleList.add(trackingDetail.getTrackingValue());
         }
         return doubleList;
+    }
+
+    @Override
+    public void updateTrackingDetails(int trackingId, int indicatorId, List<StudentTrackingUpdateDTO> studentTrackingUpdateDTOS) {
+        List<TrackingDetail> details = trackingDetailsRepository.findByTrackingIdAndIndicatorId(trackingId, indicatorId);
+
+        for(StudentTrackingUpdateDTO studentTrackingUpdateDTO: studentTrackingUpdateDTOS) {
+            for (TrackingDetail trackingDetail : details) {
+                if (studentTrackingUpdateDTO.getId() == trackingDetail.getStudent().getId()) {
+                    trackingDetail.setTrackingValue(studentTrackingUpdateDTO.getTrackingValue());
+                    trackingDetailsRepository.save(trackingDetail);
+                }
+            }
+        }
+
     }
 }

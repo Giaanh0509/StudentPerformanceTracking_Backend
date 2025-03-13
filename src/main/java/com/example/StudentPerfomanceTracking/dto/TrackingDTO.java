@@ -7,12 +7,17 @@ public class TrackingDTO {
 
     private String createDate;
 
+    private String trackingDate;
+
+    private String description;
+
     private int objectiveId;
 
-    public TrackingDTO(int id, String name, String createDate, int objectiveId) {
+    public TrackingDTO(int id, String name, String createDate, String trackingDate, int objectiveId) {
         this.id = id;
         this.name = name;
         this.createDate = createDate;
+        this.trackingDate = trackingDate;
         this.objectiveId = objectiveId;
     }
 
@@ -46,5 +51,21 @@ public class TrackingDTO {
 
     public void setObjectiveId(int objectiveId) {
         this.objectiveId = objectiveId;
+    }
+
+    public String getTrackingDate() {
+        return trackingDate;
+    }
+
+    public void setTrackingDate(String trackingDate) {
+        this.trackingDate = trackingDate;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

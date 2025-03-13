@@ -19,6 +19,12 @@ public class Tracking {
     @Column(name = "create_date")
     private String create_date;
 
+    @Column(name = "tracking_date")
+    private String trackingDate;
+
+    @Column(name = "description")
+    private String description;
+
     @ManyToOne
     @JoinColumn(name = "objective_id", referencedColumnName = "id")
     private Objective objective;
@@ -32,6 +38,21 @@ public class Tracking {
     public Tracking(String name, String create_date, Objective objective) {
         this.name = name;
         this.create_date = create_date;
+        this.objective = objective;
+    }
+
+    public Tracking(String name, String create_date, String trackingDate, Objective objective) {
+        this.name = name;
+        this.create_date = create_date;
+        this.trackingDate = trackingDate;
+        this.objective = objective;
+    }
+
+    public Tracking(String name, String create_date, String trackingDate, String description, Objective objective) {
+        this.name = name;
+        this.create_date = create_date;
+        this.trackingDate = trackingDate;
+        this.description = description;
         this.objective = objective;
     }
 
@@ -65,5 +86,25 @@ public class Tracking {
 
     public void setObjective(Objective objective) {
         this.objective = objective;
+    }
+
+    public String getCreate_date() {
+        return create_date;
+    }
+
+    public void setCreate_date(String create_date) {
+        this.create_date = create_date;
+    }
+
+    public String getTrackingDate() {
+        return trackingDate;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

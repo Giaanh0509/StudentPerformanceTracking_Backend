@@ -1,9 +1,8 @@
 package com.example.StudentPerfomanceTracking.controller;
 
-import com.example.StudentPerfomanceTracking.dto.StudentDTO;
-import com.example.StudentPerfomanceTracking.dto.TrackingDTO;
-import com.example.StudentPerfomanceTracking.dto.TrackingRequestDTO;
+import com.example.StudentPerfomanceTracking.dto.*;
 import com.example.StudentPerfomanceTracking.entity.Student;
+import com.example.StudentPerfomanceTracking.entity.Subject;
 import com.example.StudentPerfomanceTracking.entity.Tracking;
 import com.example.StudentPerfomanceTracking.service.TrackingsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,5 +43,13 @@ public class TrackingsController {
     public boolean checkTracking(@PathVariable("trackingId") int trackingId,
                                  @PathVariable("indicatorId") int indicatorId) {
         return trackingsService.checkTracking(trackingId, indicatorId);
+    }
+
+    @PutMapping("details/update/{trackingId}/{indicatorId}")
+    public void updateTrackingDetails(@PathVariable("trackingId") int trackingId,
+                                      @PathVariable("indicatorId") int indicatorId,
+                                      @RequestBody List<StudentTrackingUpdateDTO> studentTrackingUpdateDTOS) {
+        trackingsService.updateTrackingDetails(trackingId, indicatorId, studentTrackingUpdateDTOS);
+        return;
     }
 }

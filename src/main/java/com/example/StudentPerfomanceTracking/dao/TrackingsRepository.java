@@ -16,5 +16,6 @@ import java.util.List;
 public interface TrackingsRepository extends JpaRepository<Tracking, Integer> {
     Tracking findTrackingById(int id);
 
+    @Query("SELECT t FROM Tracking t WHERE t.objective.id = :objectiveId ORDER BY t.id DESC")
     List<Tracking> findByObjectiveId(int objectiveId);
 }

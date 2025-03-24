@@ -124,4 +124,23 @@ public class TrackingsServiceImpl implements TrackingsService {
         }
 
     }
+
+    @Override
+    public List<TrackingDTO> getAllTracking() {
+        List<Tracking> trackingList = trackingsRepository.findAll();
+        List<TrackingDTO> trackingDTOList = new ArrayList<>();
+
+        for(Tracking tracking: trackingList) {
+            TrackingDTO trackingDTO = new TrackingDTO(
+                    tracking.getId(),
+                    tracking.getName(),
+                    tracking.getCreateDate(),
+                    tracking.getTrackingDate(),
+                    tracking.getObjective().getId());
+
+            trackingDTOList.add(trackingDTO);
+        }
+
+        return trackingDTOList;
+    }
 }

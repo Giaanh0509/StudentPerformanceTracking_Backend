@@ -22,6 +22,11 @@ public class TrackingsController {
         return trackingsService.saveTracking(trackingDTO);
     }
 
+    @GetMapping("/all")
+    public List<TrackingDTO> getAllTracking() {
+        return trackingsService.getAllTracking();
+    }
+
     @GetMapping("/objectiveId={objectiveId}")
     public List<TrackingDTO> getTrackingByObjectiveId(@PathVariable int objectiveId) {
         return trackingsService.getTrackingByObjectiveId(objectiveId);

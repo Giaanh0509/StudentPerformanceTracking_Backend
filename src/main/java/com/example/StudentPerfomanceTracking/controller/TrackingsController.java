@@ -38,6 +38,19 @@ public class TrackingsController {
         return trackingsService.getTrackingValue(trackingId, indicatorId);
     }
 
+    @GetMapping("/trackingId={trackingId}/indicatorId={indicatorId}/statistics")
+    public Double getTrackingValueAllStudent(@PathVariable("trackingId") int trackingId,
+                                             @PathVariable("indicatorId") int indicatorId) {
+        return trackingsService.getTrackingValueStatistics(trackingId, indicatorId);
+    }
+
+    @GetMapping("/trackingId={trackingId}/indicatorId={indicatorId}/studentId={studentId}")
+    public Double getTrackingValueStudent(@PathVariable("trackingId") int trackingId,
+                                             @PathVariable("indicatorId") int indicatorId,
+                                             @PathVariable("studentId") int studentId) {
+        return trackingsService.getTrackingValueStudent(trackingId, indicatorId, studentId);
+    }
+
     @PostMapping("/newDetails")
     public void createNewTrackingDetails(@RequestBody TrackingRequestDTO trackingRequestDTO) {
         trackingsService.saveTrackingDetails(trackingRequestDTO);

@@ -25,6 +25,7 @@ public class Tracking {
     @Column(name = "description")
     private String description;
 
+
     @ManyToOne
     @JoinColumn(name = "objective_id", referencedColumnName = "id")
     private Objective objective;

@@ -105,7 +105,7 @@ public class ObjectivesServiceImpl implements ObjectivesService {
                     indicator.getSkill().getName());
             indicatorDTOList.add(indicatorDTO);
         }
-        ObjectiveDTO objectiveDTO = new ObjectiveDTO(objective.getId(), objective.getName(), subject.getName(), group.getName(), objective.getCreateDate(), indicatorDTOList);
+        ObjectiveDTO objectiveDTO = new ObjectiveDTO(objective.getId(), objective.getName(), subject.getName(), group.getName(), group.getId(), objective.getCreateDate(), indicatorDTOList);
         return objectiveDTO;
     }
 }

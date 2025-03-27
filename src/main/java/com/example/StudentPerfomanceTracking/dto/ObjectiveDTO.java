@@ -13,6 +13,8 @@ public class ObjectiveDTO {
 
     private String group;
 
+    private int groupId;
+
     private String createDate;
 
     private List<IndicatorDTO> indicators;
@@ -52,6 +54,16 @@ public class ObjectiveDTO {
         this.name = name;
         this.subject = subject;
         this.group = group;
+        this.createDate = createDate;
+        this.indicators = indicators;
+    }
+
+    public ObjectiveDTO(int id, String name, String subject, String group, int groupId, String createDate, List<IndicatorDTO> indicators) {
+        this.id = id;
+        this.name = name;
+        this.subject = subject;
+        this.group = group;
+        this.groupId = groupId;
         this.createDate = createDate;
         this.indicators = indicators;
     }
@@ -102,5 +114,13 @@ public class ObjectiveDTO {
 
     public void setIndicatorDTOList(List<IndicatorDTO> indicators) {
         this.indicators = indicators;
+    }
+
+    public int getGroupId() {
+        return groupId;
+    }
+
+    public void setGroupId(int groupId) {
+        this.groupId = groupId;
     }
 }

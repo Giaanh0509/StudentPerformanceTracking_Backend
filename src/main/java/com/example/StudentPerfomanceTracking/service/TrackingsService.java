@@ -21,4 +21,8 @@ public interface TrackingsService {
     void updateTrackingDetails(int trackingId, int indicatorId, List<StudentTrackingUpdateDTO> studentTrackingUpdateDTOS);
 
     List<TrackingDTO> getAllTracking();
+
+    Double getTrackingValueStatistics(int trackingId, int indicatorId);
+
+    Double getTrackingValueStudent(int trackingId, int indicatorId, int studentId);
 }

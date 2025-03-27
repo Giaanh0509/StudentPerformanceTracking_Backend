@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -142,5 +143,26 @@ public class TrackingsServiceImpl implements TrackingsService {
         }
 
         return trackingDTOList;
+    }
+
+    @Override
+    public Double getTrackingValueStatistics(int trackingId, int indicatorId) {
+        List<TrackingDetail> detail = trackingDetailsRepository.findByTrackingIdAndIndicatorId(trackingId, indicatorId);
+        List<Double> doubleList = detail.stream()
+                .map(TrackingDetail::getTrackingValue)
+                .collect(Collectors.toList());
+
+        return doubleList.stream()
+                .mapToDouble(Double::doubleValue)
+                .average()
+                .orElse(0);
+    }
+
+    @Override
+    public Double getTrackingValueStudent(int trackingId, int indicatorId, int studentId) {
+        TrackingDetail detail = trackingDetailsRepository.findByTrackingIdAndIndicatorIdAndStudentId(trackingId, indicatorId, studentId);
+        if(detail == null) {
+            return 0.0;
+        } else return detail.getTrackingValue();
     }
 }

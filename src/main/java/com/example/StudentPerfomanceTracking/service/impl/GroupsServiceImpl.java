@@ -73,4 +73,37 @@ public class GroupsServiceImpl implements GroupsService {
 
         return groupsRepository.save(existingGroup);
     }
+
+    @Override
+    public List<GroupDTO> getAllGroups() {
+        List<Group> groupList = groupsRepository.findAll();
+
+        List<GroupDTO> groupDTOList = new ArrayList<>();
+        for (Group group : groupList) {
+            GroupDTO groupDTO = new GroupDTO(
+                    group.getId(),
+                    group.getName(),
+                    group.getDescription(),
+                    group.getCreateDate(),
+                    group.getUser().getId()
+            );
+            groupDTOList.add(groupDTO);
+        }
+
+        return groupDTOList;
+    }
+
+    @Override
+    public GroupDTO getGroupById(int groupId) {
+        Group group = groupsRepository.findGroupById(groupId);
+        GroupDTO groupDTO = new GroupDTO(
+                group.getId(),
+                group.getName(),
+                group.getDescription(),
+                group.getCreateDate(),
+                group.getUser().getId()
+        );
+
+        return groupDTO;
+    }
 }

@@ -13,4 +13,8 @@ public interface GroupsService {
     void deleteGroupById(int groupId);
 
     Group updateGroup(int groupId, GroupDTO groupDTO);
+
+    List<GroupDTO> getAllGroups();
+
+    GroupDTO getGroupById(int groupId);
 }

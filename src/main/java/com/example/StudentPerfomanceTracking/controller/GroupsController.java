@@ -22,8 +22,18 @@ public class GroupsController {
     }
 
     @GetMapping("/userId={userId}")
-    public List<GroupDTO> getSubjectByUserId(@PathVariable int userId) {
+    public List<GroupDTO> getGroupByUserId(@PathVariable int userId) {
         return groupsService.findGroupByUserId(userId);
+    }
+
+    @GetMapping("/all")
+    public List<GroupDTO> getGroupByAll() {
+        return groupsService.getAllGroups();
+    }
+
+    @GetMapping("/groupId={groupId}")
+    public GroupDTO getGroupById(@PathVariable int groupId) {
+        return groupsService.getGroupById(groupId);
     }
 
     @GetMapping("/delete/{groupId}")

@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -62,6 +63,19 @@ public class StudentsServiceImpl implements StudentsService {
     }
 
     @Override
+    public StudentDTO getStudentByUserId(int userId) {
+        Student student = studentsRepository.findOneStudentByUserId(userId);
+        StudentDTO studentDTO = new StudentDTO(
+                student.getId(),
+                student.getName(),
+                student.getDateOfBirth(),
+                student.getEmail(),
+                student.getUser().getId()
+        );
+        return studentDTO;
+    }
+
+    @Override
     public Student saveNewListStudent(List<StudentDTO> studentDTOList) {
         for(StudentDTO studentDTO: studentDTOList) {
             User user = usersRepository.findById(studentDTO.getUserId());
@@ -90,5 +104,15 @@ public class StudentsServiceImpl implements StudentsService {
             studentDTOList.add(studentDTO);
         }
         return studentDTOList;
+    }
+
+    @Override
+    public Student updateStudent(StudentDTO studentDTO) {
+        Student existStudent = studentsRepository.findStudentById(studentDTO.getId());
+        existStudent.setName(studentDTO.getName());
+        existStudent.setDateOfBirth(studentDTO.getDateOfBirth());
+
+        studentsRepository.save(existStudent);
+        return existStudent;
     }
 }

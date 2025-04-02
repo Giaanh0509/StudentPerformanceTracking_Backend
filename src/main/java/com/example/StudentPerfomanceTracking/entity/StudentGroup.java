@@ -2,6 +2,8 @@ package com.example.StudentPerfomanceTracking.entity;
 
 import jakarta.persistence.*;
 
+
+
 @Entity
 @Table(name = "students_groups")
 public class StudentGroup {
@@ -18,12 +20,38 @@ public class StudentGroup {
     @JoinColumn(name = "group_id", referencedColumnName = "id")
     private Group group;
 
+    public enum Status {
+        PENDING,
+        APPROVED,
+        REJECTED
+    }
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Status status;
+
+    @Column(name = "request_date")
+    private String requestDate;
+
     public StudentGroup() {
     }
 
     public StudentGroup(Student student, Group group) {
         this.student = student;
         this.group = group;
+    }
+
+    public StudentGroup(Student student, Group group, Status status) {
+        this.student = student;
+        this.group = group;
+        this.status = status;
+    }
+
+    public StudentGroup(Student student, Group group, Status status, String requestDate) {
+        this.student = student;
+        this.group = group;
+        this.status = status;
+        this.requestDate = requestDate;
     }
 
     public Student getStudent() {
@@ -48,5 +76,21 @@ public class StudentGroup {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public String getRequestDate() {
+        return requestDate;
+    }
+
+    public void setRequestDate(String requestDate) {
+        this.requestDate = requestDate;
     }
 }

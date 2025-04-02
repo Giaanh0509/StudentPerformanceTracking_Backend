@@ -37,8 +37,8 @@ public class Student {
     public Student() {
     }
 
-    public Student(String name, User user) {
-        this.name = name;
+    public Student(String email, User user) {
+        this.email = email;
         this.user = user;
     }
 

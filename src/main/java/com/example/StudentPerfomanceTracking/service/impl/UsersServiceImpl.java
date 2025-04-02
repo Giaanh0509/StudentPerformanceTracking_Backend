@@ -1,11 +1,13 @@
 package com.example.StudentPerfomanceTracking.service.impl;
 
 import com.example.StudentPerfomanceTracking.dao.RolesRepository;
+import com.example.StudentPerfomanceTracking.dao.StudentsRepository;
 import com.example.StudentPerfomanceTracking.dao.UsersRepository;
 import com.example.StudentPerfomanceTracking.dto.LoginDTO;
 import com.example.StudentPerfomanceTracking.dto.RegisterDTO;
 import com.example.StudentPerfomanceTracking.dto.UserLoginDTO;
 import com.example.StudentPerfomanceTracking.entity.Role;
+import com.example.StudentPerfomanceTracking.entity.Student;
 import com.example.StudentPerfomanceTracking.entity.User;
 import com.example.StudentPerfomanceTracking.security.jwt.AuthResponse;
 import com.example.StudentPerfomanceTracking.security.jwt.JwtUntils;
@@ -34,6 +36,9 @@ public class UsersServiceImpl implements UsersService {
     @Autowired
     private JwtUntils jwtUntils;
 
+    @Autowired
+    private StudentsRepository studentsRepository;
+
     @Override
     public ResponseEntity<?> registerUser(RegisterDTO registerDTO) {
         if(usersRepository.existsByUsername(registerDTO.getUsername())) {
@@ -55,6 +60,11 @@ public class UsersServiceImpl implements UsersService {
         user.setPhoneNumber(registerDTO.getPhoneNumber());
         user.setRole(role);
         saveUser(user);
+
+        if(registerDTO.getRole().equalsIgnoreCase("LEARNER")) {
+            Student student = new Student(registerDTO.getEmail(), user);
+            studentsRepository.save(student);
+        }
         return ResponseEntity.ok("Successful Account Registration");
     }
 

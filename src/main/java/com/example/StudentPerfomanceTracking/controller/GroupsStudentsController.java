@@ -1,14 +1,12 @@
 package com.example.StudentPerfomanceTracking.controller;
 
+import com.example.StudentPerfomanceTracking.dto.GroupDTO;
 import com.example.StudentPerfomanceTracking.dto.StudentDTO;
-import com.example.StudentPerfomanceTracking.dto.SubjectDTO;
-import com.example.StudentPerfomanceTracking.entity.Student;
+import com.example.StudentPerfomanceTracking.dto.StudentGroupDTO;
+import com.example.StudentPerfomanceTracking.entity.StudentGroup;
 import com.example.StudentPerfomanceTracking.service.GroupsStudentsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,5 +19,25 @@ public class GroupsStudentsController {
     @GetMapping("/groupId={groupId}")
     public List<StudentDTO> getStudentByGroupId(@PathVariable int groupId) {
         return groupsStudentsService.findStudentByGroupId(groupId);
+    }
+
+    @GetMapping("/studentId={studentId}")
+    public List<GroupDTO> getGroupByStudentId(@PathVariable int studentId) {
+        return groupsStudentsService.findGroupByStudentId(studentId);
+    }
+
+    @GetMapping("/studentId={studentId}/groupId={groupId}")
+    public StudentGroup.Status getGroupByStudentId(@PathVariable int studentId, @PathVariable int groupId) {
+        return groupsStudentsService.findStatus(studentId, groupId);
+    }
+
+    @PostMapping("/updateStatus")
+    public StudentGroup updateStatus(@RequestBody StudentGroupDTO studentGroupDTO) {
+        return groupsStudentsService.updateStatus(studentGroupDTO);
+    }
+
+    @GetMapping("/joinRequest/groupId={groupId}")
+    public List<StudentDTO> updateStatus(@PathVariable int groupId) {
+        return groupsStudentsService.joinRequest(groupId);
     }
 }

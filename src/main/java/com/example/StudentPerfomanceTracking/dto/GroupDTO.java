@@ -1,5 +1,7 @@
 package com.example.StudentPerfomanceTracking.dto;
 
+import com.example.StudentPerfomanceTracking.entity.StudentGroup;
+
 public class GroupDTO {
     private int id;
 
@@ -10,6 +12,8 @@ public class GroupDTO {
     private String createDate;
 
     private int userId;
+
+    private StudentGroup.Status status;
 
     public GroupDTO() {
     }
@@ -27,6 +31,15 @@ public class GroupDTO {
         this.description = description;
         this.createDate = createDate;
         this.userId = userId;
+    }
+
+    public GroupDTO(int id, String name, String description, String createDate, int userId, StudentGroup.Status status) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.createDate = createDate;
+        this.userId = userId;
+        this.status = status;
     }
 
     public GroupDTO(String name, int userId) {
@@ -72,5 +85,13 @@ public class GroupDTO {
 
     public void setCreateDate(String createDate) {
         this.createDate = createDate;
+    }
+
+    public StudentGroup.Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(StudentGroup.Status status) {
+        this.status = status;
     }
 }

@@ -40,4 +40,9 @@ public class GroupsStudentsController {
     public List<StudentDTO> updateStatus(@PathVariable int groupId) {
         return groupsStudentsService.joinRequest(groupId);
     }
+
+    @GetMapping("/acceptRequest/studentId={studentId}/groupId={groupId}")
+    public void updateStatus(@PathVariable int studentId, @PathVariable int groupId) {
+        groupsStudentsService.acceptRequest(studentId, groupId);
+    }
 }

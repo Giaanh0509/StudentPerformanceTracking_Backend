@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -33,8 +34,11 @@ public class GroupsStudentsServiceImpl implements GroupsStudentsService {
     @Override
     public List<StudentDTO> findStudentByGroupId(int groupId) {
         List<StudentGroup> studentGroupList = studentsGroupsRepository.findByGroupId(groupId);
+        List<StudentGroup> pendingGroups = studentGroupList.stream()
+                .filter(group -> StudentGroup.Status.APPROVED == group.getStatus())
+                .collect(Collectors.toList());
         List<StudentDTO> studentDTOList = new ArrayList<>();
-        for(StudentGroup studentGroup: studentGroupList) {
+        for(StudentGroup studentGroup: pendingGroups) {
             Student student = studentsRepository.findStudentById(studentGroup.getStudent().getId());
             StudentDTO studentDTO = new StudentDTO(student.getId(), student.getName(), student.getDateOfBirth(), student.getEmail(), student.getUser().getId(), groupId);
 
@@ -78,13 +82,21 @@ public class GroupsStudentsServiceImpl implements GroupsStudentsService {
     @Override
     public List<StudentDTO> joinRequest(int groupId) {
         List<StudentGroup> studentGroupList = studentsGroupsRepository.findByGroupId(groupId);
+        List<StudentGroup> pendingGroups = studentGroupList.stream()
+                .filter(group -> StudentGroup.Status.PENDING == group.getStatus())
+                .collect(Collectors.toList());
         List<StudentDTO> studentDTOList = new ArrayList<>();
-        for(StudentGroup studentGroup: studentGroupList) {
+        for(StudentGroup studentGroup: pendingGroups) {
             Student student = studentsRepository.findStudentById(studentGroup.getStudent().getId());
             StudentDTO studentDTO = new StudentDTO(student.getId(), student.getName(), student.getDateOfBirth(), student.getEmail(), student.getUser().getId(), groupId);
 
             studentDTOList.add(studentDTO);
         }
         return studentDTOList;
+    }
+
+    @Override
+    public void acceptRequest(int studentId, int groupId) {
+        StudentGroup studentGroup = studentsGroupsRepository.findByStudentIdAndGroupId(studentId, groupId);
     }
 }

@@ -45,10 +45,9 @@ public class StudentsServiceImpl implements StudentsService {
     }
 
     @Override
-    public List<StudentDTO> findStudentByUserId(int userId) {
-        List<Student> studentList = studentsRepository.findStudentByUserId(userId);
-        List<StudentDTO> studentDTOList = new ArrayList<>();
-        for (Student student : studentList) {
+    public StudentDTO findStudentByUserId(int userId) {
+        Student student = studentsRepository.findStudentByUserId(userId);
+        if(student != null) {
             StudentDTO studentDTO = new StudentDTO(
                     student.getId(),
                     student.getName(),
@@ -56,10 +55,10 @@ public class StudentsServiceImpl implements StudentsService {
                     student.getEmail(),
                     student.getUser().getId()
             );
-
-            studentDTOList.add(studentDTO);
+            return studentDTO;
+        } else {
+            return null;
         }
-        return studentDTOList;
     }
 
     @Override

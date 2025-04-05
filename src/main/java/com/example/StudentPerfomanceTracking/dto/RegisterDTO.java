@@ -6,6 +6,7 @@ public class RegisterDTO {
     private String role;
     private String email;
     private String phoneNumber;
+    private String name;
 
     public RegisterDTO() {
     }
@@ -48,5 +49,13 @@ public class RegisterDTO {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

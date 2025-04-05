@@ -10,12 +10,9 @@ import java.util.List;
 
 public interface GroupsStudentsService {
     List<StudentDTO> findStudentByGroupId(int groupId);
-
     List<GroupDTO> findGroupByStudentId(int studentId);
-
     StudentGroup.Status findStatus(int studentId, int groupId);
-
     StudentGroup updateStatus(StudentGroupDTO studentGroupDTO);
-
     List<StudentDTO> joinRequest(int groupId);
+    void acceptRequest(int studentId, int groupId);
 }

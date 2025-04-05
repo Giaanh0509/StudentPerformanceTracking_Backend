@@ -85,7 +85,8 @@ public class GroupsServiceImpl implements GroupsService {
                     group.getName(),
                     group.getDescription(),
                     group.getCreateDate(),
-                    group.getUser().getId()
+                    group.getUser().getId(),
+                    group.getUser().getName()
             );
             groupDTOList.add(groupDTO);
         }

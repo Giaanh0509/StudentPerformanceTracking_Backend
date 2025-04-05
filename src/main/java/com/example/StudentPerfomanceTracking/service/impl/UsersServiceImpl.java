@@ -59,6 +59,7 @@ public class UsersServiceImpl implements UsersService {
         user.setEmail(registerDTO.getEmail());
         user.setPhoneNumber(registerDTO.getPhoneNumber());
         user.setRole(role);
+        user.setName(registerDTO.getName());
         saveUser(user);
 
         if(registerDTO.getRole().equalsIgnoreCase("LEARNER")) {

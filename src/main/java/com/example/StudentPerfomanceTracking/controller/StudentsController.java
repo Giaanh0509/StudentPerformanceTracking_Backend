@@ -28,7 +28,7 @@ public class StudentsController {
     }
 
     @GetMapping("/userId={userId}")
-    public List<StudentDTO> getStudentsByUserId(@PathVariable int userId) {
+    public StudentDTO getStudentsByUserId(@PathVariable int userId) {
         return studentsService.findStudentByUserId(userId);
     }
 

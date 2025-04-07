@@ -1,5 +1,7 @@
 package com.example.StudentPerfomanceTracking.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.List;
 
 public class ObjectiveRequestDTO {
@@ -8,6 +10,11 @@ public class ObjectiveRequestDTO {
     private int subject_id;
     private int user_id;
     private String createDate;
+    @JsonProperty("start_date")
+    private String startDate;
+
+    @JsonProperty("end_date")
+    private String endDate;
     private List<ObjectiveDetailDTO> objectives;
 
     public int getGroup_id() {
@@ -56,6 +63,22 @@ public class ObjectiveRequestDTO {
 
     public void setCreateDate(String createDate) {
         this.createDate = createDate;
+    }
+
+    public String getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
+    }
+
+    public String getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
     }
 }
 

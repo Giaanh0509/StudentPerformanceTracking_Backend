@@ -10,12 +10,6 @@ public class ObjectiveDetailDTO {
     @JsonProperty("objective_value")
     private double objectiveValue;
 
-    @JsonProperty("start_date")
-    private String startDate;
-
-    @JsonProperty("end_date")
-    private String endDate;
-
     @JsonProperty("indicator_id")
     private int indicatorId;
 
@@ -36,22 +30,6 @@ public class ObjectiveDetailDTO {
 
     public void setObjectiveValue(double objectiveValue) {
         this.objectiveValue = objectiveValue;
-    }
-
-    public String getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(String startDate) {
-        this.startDate = startDate;
-    }
-
-    public String getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(String endDate) {
-        this.endDate = endDate;
     }
 
     public int getIndicatorId() {

@@ -98,5 +98,7 @@ public class GroupsStudentsServiceImpl implements GroupsStudentsService {
     @Override
     public void acceptRequest(int studentId, int groupId) {
         StudentGroup studentGroup = studentsGroupsRepository.findByStudentIdAndGroupId(studentId, groupId);
+        studentGroup.setStatus(StudentGroup.Status.APPROVED);
+        return;
     }
 }

@@ -19,6 +19,12 @@ public class Objective {
     @Column
     private String createDate;
 
+    @Column(name = "start_date")
+    private String startDate;
+
+    @Column(name = "end_date")
+    private String endDate;
+
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
@@ -53,11 +59,19 @@ public class Objective {
         this.subject = subject;
     }
 
+    public Objective(String name, String createDate, String startDate, String endDate, User user, Subject subject) {
+        this.name = name;
+        this.createDate = createDate;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.user = user;
+        this.subject = subject;
+    }
+
     public Objective(String name, Subject subject) {
         this.name = name;
         this.subject = subject;
     }
-
 
 
     public int getId() {
@@ -106,5 +120,21 @@ public class Objective {
 
     public void setCreateDate(String createDate) {
         this.createDate = createDate;
+    }
+
+    public String getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
+    }
+
+    public String getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
     }
 }

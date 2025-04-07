@@ -22,10 +22,12 @@ public class ObjectivesController {
         int subjectId = requestDTO.getSubject_id();
         int userId = requestDTO.getUser_id();
         String createDate = requestDTO.getCreateDate();
+        String startDate = requestDTO.getStartDate();
+        String endDate = requestDTO.getEndDate();
         String objectiveName = requestDTO.getObjectiveName();
         List<ObjectiveDetailDTO> objectives = requestDTO.getObjectives();
 
-        objectivesService.saveObjective(groupId, createDate, subjectId, userId, objectiveName, objectives);
+        objectivesService.saveObjective(groupId, createDate, startDate, endDate, subjectId, userId, objectiveName, objectives);
     }
 
     @GetMapping("/userId={userId}")
@@ -42,6 +44,11 @@ public class ObjectivesController {
     public String deleteSubject(@PathVariable int objectiveId) {
         objectivesService.deleteObjective(objectiveId);
         return null;
+    }
+
+    @GetMapping("/studentId={studentId}")
+    public List<ObjectiveDTO> getObjectiveByStudentId(@PathVariable int studentId) {
+        return objectivesService.findObjectivesByStudentId(studentId);
     }
 
 }

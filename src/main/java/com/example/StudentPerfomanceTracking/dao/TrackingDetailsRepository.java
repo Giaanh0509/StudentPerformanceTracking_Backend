@@ -14,4 +14,5 @@ import java.util.Optional;
 public interface TrackingDetailsRepository extends JpaRepository<TrackingDetail, Integer> {
     List<TrackingDetail> findByTrackingIdAndIndicatorId(int trackingId, int indicatorId);
     TrackingDetail findByTrackingIdAndIndicatorIdAndStudentId(int trackingId, int indicatorId, int studentId);
+    List<TrackingDetail> findByTrackingIdAndStudentId(int trackingId, int studentId);
 }

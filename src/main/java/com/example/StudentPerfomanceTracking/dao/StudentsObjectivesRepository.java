@@ -1,6 +1,7 @@
 package com.example.StudentPerfomanceTracking.dao;
 
 import com.example.StudentPerfomanceTracking.entity.Group;
+import com.example.StudentPerfomanceTracking.entity.Objective;
 import com.example.StudentPerfomanceTracking.entity.Student;
 import com.example.StudentPerfomanceTracking.entity.StudentObjective;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -17,6 +18,9 @@ public interface StudentsObjectivesRepository extends JpaRepository<StudentObjec
 
     @Query("SELECT sg.group FROM StudentObjective sg WHERE sg.objective.id = :objectiveId")
     Group findGroupByObjectiveId(@Param("objectiveId") int objectiveId);
+
+    @Query("SELECT so.objective FROM StudentObjective so WHERE so.student.id = :studentId")
+    List<Objective> findObjectivesByStudentId(@Param("studentId") int studentId);
 
     @Query("SELECT so.student FROM StudentObjective so WHERE so.objective.id = :objectiveId")
     List<Student> findStudentsByObjectiveId(@Param("objectiveId") int objectiveId);

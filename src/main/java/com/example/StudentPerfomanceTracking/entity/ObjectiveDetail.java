@@ -15,12 +15,6 @@ public class ObjectiveDetail {
     @Column(length = 255)
     private String name;
 
-    @Column(name = "start_date")
-    private String startDate;
-
-    @Column(name = "end_date")
-    private String endDate;
-
     @ManyToOne
     @JoinColumn(name = "indicator_id", referencedColumnName = "id")
     private Indicator indicator;
@@ -36,10 +30,8 @@ public class ObjectiveDetail {
     public ObjectiveDetail() {
     }
 
-    public ObjectiveDetail(Objective objective, String startDate, String endDate, Indicator indicator, double start_value, double objective_value) {
+    public ObjectiveDetail(Objective objective, Indicator indicator, double start_value, double objective_value) {
         this.objective = objective;
-        this.startDate = startDate;
-        this.endDate = endDate;
         this.indicator = indicator;
         this.start_value = start_value;
         this.objective_value = objective_value;
@@ -59,22 +51,6 @@ public class ObjectiveDetail {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(String startDate) {
-        this.startDate = startDate;
-    }
-
-    public String getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(String endDate) {
-        this.endDate = endDate;
     }
 
     public Indicator getIndicator() {

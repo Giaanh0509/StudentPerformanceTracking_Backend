@@ -41,7 +41,7 @@ public class GroupsStudentsController {
         return groupsStudentsService.joinRequest(groupId);
     }
 
-    @GetMapping("/acceptRequest/studentId={studentId}/groupId={groupId}")
+    @PutMapping("/acceptRequest/studentId={studentId}/groupId={groupId}")
     public void updateStatus(@PathVariable int studentId, @PathVariable int groupId) {
         groupsStudentsService.acceptRequest(studentId, groupId);
     }

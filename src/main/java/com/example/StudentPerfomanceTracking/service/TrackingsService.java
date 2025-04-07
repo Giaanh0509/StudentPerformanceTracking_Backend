@@ -1,5 +1,6 @@
 package com.example.StudentPerfomanceTracking.service;
 
+import com.example.StudentPerfomanceTracking.dto.AchievementDTO;
 import com.example.StudentPerfomanceTracking.dto.StudentTrackingUpdateDTO;
 import com.example.StudentPerfomanceTracking.dto.TrackingDTO;
 import com.example.StudentPerfomanceTracking.dto.TrackingRequestDTO;
@@ -25,4 +26,5 @@ public interface TrackingsService {
     Double getTrackingValueStatistics(int trackingId, int indicatorId);
 
     Double getTrackingValueStudent(int trackingId, int indicatorId, int studentId);
+    AchievementDTO getAchievement(int trackingId, int studentId);
 }

@@ -42,11 +42,11 @@ public class ObjectivesServiceImpl implements ObjectivesService {
     UsersRepository usersRepository;
 
     @Override
-    public void saveObjective(int groupId, String createDate, int subjectId, int userId, String objectiveName, List<ObjectiveDetailDTO> objectiveDetailDTOList) {
+    public void saveObjective(int groupId, String createDate, String startDate, String endDate, int subjectId, int userId, String objectiveName, List<ObjectiveDetailDTO> objectiveDetailDTOList) {
         Group group = groupsRepository.findGroupById(groupId);
         Subject subject = subjectsRepository.findSubjectById(subjectId);
         User user = usersRepository.findById(userId);
-        Objective objective = new Objective(objectiveName, createDate, user, subject);
+        Objective objective = new Objective(objectiveName, createDate, startDate, endDate, user, subject);
         objectivesRepository.save(objective);
 
         List<Student> studentIdList = studentsGroupsRepository.findStudentId(groupId);
@@ -57,7 +57,7 @@ public class ObjectivesServiceImpl implements ObjectivesService {
 
         for(ObjectiveDetailDTO objectiveDetailDTO : objectiveDetailDTOList) {
             Indicator indicator = indicatorsRepository.findById(objectiveDetailDTO.getIndicatorId());
-            ObjectiveDetail objectiveDetail = new ObjectiveDetail(objective, objectiveDetailDTO.getStartDate(), objectiveDetailDTO.getEndDate(), indicator, objectiveDetailDTO.getStartValue(), objectiveDetailDTO.getObjectiveValue());
+            ObjectiveDetail objectiveDetail = new ObjectiveDetail(objective, indicator, objectiveDetailDTO.getStartValue(), objectiveDetailDTO.getObjectiveValue());
             objectivesDetailsRepository.save(objectiveDetail);
         }
     }
@@ -107,5 +107,21 @@ public class ObjectivesServiceImpl implements ObjectivesService {
         }
         ObjectiveDTO objectiveDTO = new ObjectiveDTO(objective.getId(), objective.getName(), subject.getName(), group.getName(), group.getId(), objective.getCreateDate(), indicatorDTOList);
         return objectiveDTO;
+    }
+
+    @Override
+    public List<ObjectiveDTO> findObjectivesByStudentId(int studentId) {
+        List<Objective> objectiveList = studentsObjectivesRepository.findObjectivesByStudentId(studentId);
+        List<ObjectiveDTO> objectiveDTOList = new ArrayList<>();
+        for(Objective objective: objectiveList) {
+            Subject subject = subjectsRepository.findSubjectById(objective.getSubject().getId());
+            User user = objectivesRepository.findUserByObjectiveId(objective.getId());
+            Group group = studentsObjectivesRepository.findGroupByObjectiveId(objective.getId());
+            ObjectiveDTO objectiveDTO = new ObjectiveDTO(objective.getId(), objective.getName(), subject.getName(), group.getName(), objective.getCreateDate(), user.getName());
+
+            objectiveDTOList.add(objectiveDTO);
+        }
+
+        return objectiveDTOList;
     }
 }

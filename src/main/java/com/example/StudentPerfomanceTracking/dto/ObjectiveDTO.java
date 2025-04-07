@@ -17,6 +17,8 @@ public class ObjectiveDTO {
 
     private String createDate;
 
+    private String userName;
+
     private List<IndicatorDTO> indicators;
 
     public ObjectiveDTO(String name) {
@@ -49,6 +51,15 @@ public class ObjectiveDTO {
         this.createDate = createDate;
     }
 
+    public ObjectiveDTO(int id, String name, String subject, String group, String createDate, String userName) {
+        this.id = id;
+        this.name = name;
+        this.subject = subject;
+        this.group = group;
+        this.createDate = createDate;
+        this.userName = userName;
+    }
+
     public ObjectiveDTO(int id, String name, String subject, String group, String createDate, List<IndicatorDTO> indicators) {
         this.id = id;
         this.name = name;
@@ -67,6 +78,8 @@ public class ObjectiveDTO {
         this.createDate = createDate;
         this.indicators = indicators;
     }
+
+
 
     public String getName() {
         return name;
@@ -122,5 +135,13 @@ public class ObjectiveDTO {
 
     public void setGroupId(int groupId) {
         this.groupId = groupId;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 }

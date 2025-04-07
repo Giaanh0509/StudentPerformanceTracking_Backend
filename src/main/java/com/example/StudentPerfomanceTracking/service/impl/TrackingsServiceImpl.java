@@ -1,10 +1,7 @@
 package com.example.StudentPerfomanceTracking.service.impl;
 
 import com.example.StudentPerfomanceTracking.dao.*;
-import com.example.StudentPerfomanceTracking.dto.StudentTrackingUpdateDTO;
-import com.example.StudentPerfomanceTracking.dto.TrackingDTO;
-import com.example.StudentPerfomanceTracking.dto.TrackingDetailsDTO;
-import com.example.StudentPerfomanceTracking.dto.TrackingRequestDTO;
+import com.example.StudentPerfomanceTracking.dto.*;
 import com.example.StudentPerfomanceTracking.entity.*;
 import com.example.StudentPerfomanceTracking.service.TrackingsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -164,5 +161,23 @@ public class TrackingsServiceImpl implements TrackingsService {
         if(detail == null) {
             return 0.0;
         } else return detail.getTrackingValue();
+    }
+
+    @Override
+    public AchievementDTO getAchievement(int trackingId, int studentId) {
+        Tracking tracking = trackingsRepository.findTrackingById(trackingId);
+        AchievementDTO achievementDTO = new AchievementDTO();
+        achievementDTO.setTrackingId(trackingId);
+        achievementDTO.setTrackingName(tracking.getName());
+        achievementDTO.setTrackingDate(tracking.getTrackingDate());
+        List<ScoreDTO> scoreDTOList = new ArrayList<>();
+        List<TrackingDetail> trackingDetails = trackingDetailsRepository.findByTrackingIdAndStudentId(trackingId, studentId);
+        for (TrackingDetail trackingDetail: trackingDetails) {
+            ScoreDTO scoreDTO = new ScoreDTO(trackingDetail.getIndicator().getSkill().getName(), trackingDetail.getIndicator().getEvaluationType(), trackingDetail.getTrackingValue(), trackingDetail.getIndicator().getScaleMax());
+            scoreDTOList.add(scoreDTO);
+        }
+
+        achievementDTO.setScoreDTOList(scoreDTOList);
+        return achievementDTO;
     }
 }

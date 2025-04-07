@@ -70,4 +70,10 @@ public class TrackingsController {
         trackingsService.updateTrackingDetails(trackingId, indicatorId, studentTrackingUpdateDTOS);
         return;
     }
+
+    @GetMapping("/trackingId={trackingId}/studentId={studentId}")
+    public AchievementDTO  getAchievement(@PathVariable("trackingId") int trackingId,
+                                         @PathVariable("studentId") int studentId) {
+        return trackingsService.getAchievement(trackingId, studentId);
+    }
 }

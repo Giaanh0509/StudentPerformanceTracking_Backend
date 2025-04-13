@@ -11,6 +11,8 @@ public class SubjectDTO {
 
     private String description;
 
+    private int uses;
+
     private int userId;
 
     public SubjectDTO() {
@@ -18,6 +20,14 @@ public class SubjectDTO {
 
     public SubjectDTO(String name) {
         this.name = name;
+    }
+
+    public SubjectDTO(int id, String name, String createDate, int uses, int userId) {
+        this.id = id;
+        this.name = name;
+        this.createDate = createDate;
+        this.uses = uses;
+        this.userId = userId;
     }
 
     public SubjectDTO(int id, String name, String createDate, int userId) {
@@ -65,5 +75,13 @@ public class SubjectDTO {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public int getUses() {
+        return uses;
+    }
+
+    public void setUses(int uses) {
+        this.uses = uses;
     }
 }

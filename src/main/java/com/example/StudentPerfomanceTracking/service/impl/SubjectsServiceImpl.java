@@ -30,7 +30,7 @@ public class SubjectsServiceImpl implements SubjectsService {
     @Override
     public Subject saveSubject(SubjectDTO subjectDTO) {
         User user = usersRepository.findById(subjectDTO.getUserId());
-        Subject subject = new Subject(subjectDTO.getName(), subjectDTO.getCreateDate(), subjectDTO.getDescription(), user);
+        Subject subject = new Subject(subjectDTO.getName(), subjectDTO.getCreateDate(), subjectDTO.getDescription(), 0, user);
         subjectsRepository.save(subject);
         return subject;
     }
@@ -44,6 +44,7 @@ public class SubjectsServiceImpl implements SubjectsService {
                     subject.getId(),
                     subject.getName(),
                     subject.getCreateDate(),
+                    subject.getUses(),
                     subject.getUser().getUsername()
             );
 
@@ -72,6 +73,7 @@ public class SubjectsServiceImpl implements SubjectsService {
                     subject.getId(),
                     subject.getName(),
                     subject.getCreateDate(),
+                    subject.getUses(),
                     subject.getUser().getId()
                     );
 

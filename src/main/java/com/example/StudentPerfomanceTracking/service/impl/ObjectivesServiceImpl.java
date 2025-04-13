@@ -45,6 +45,7 @@ public class ObjectivesServiceImpl implements ObjectivesService {
     public void saveObjective(int groupId, String createDate, String startDate, String endDate, int subjectId, int userId, String objectiveName, List<ObjectiveDetailDTO> objectiveDetailDTOList) {
         Group group = groupsRepository.findGroupById(groupId);
         Subject subject = subjectsRepository.findSubjectById(subjectId);
+        subject.setUses(subject.getUses() + 1);
         User user = usersRepository.findById(userId);
         Objective objective = new Objective(objectiveName, createDate, startDate, endDate, user, subject);
         objectivesRepository.save(objective);

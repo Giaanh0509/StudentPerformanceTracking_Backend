@@ -22,6 +22,9 @@ public class Subject {
     @Column(name = "description")
     private String description;
 
+    @Column(name = "uses")
+    private Integer uses;
+
     @OneToMany(mappedBy = "subject", cascade = CascadeType.ALL)
     private Set<Skill> skills;
 
@@ -51,6 +54,14 @@ public class Subject {
         this.name = name;
         this.createDate = createDate;
         this.description = description;
+        this.user = user;
+    }
+
+    public Subject(String name, String createDate, String description, Integer uses, User user) {
+        this.name = name;
+        this.createDate = createDate;
+        this.description = description;
+        this.uses = uses;
         this.user = user;
     }
 
@@ -100,5 +111,17 @@ public class Subject {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public int getUses() {
+        return uses;
+    }
+
+    public void setUses(int uses) {
+        this.uses = uses;
+    }
+
+    public void setUses(Integer uses) {
+        this.uses = uses;
     }
 }

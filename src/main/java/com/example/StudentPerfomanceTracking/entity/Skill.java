@@ -27,7 +27,7 @@ public class Skill {
     private String description;
 
     @Column(length = 255)
-    private String formula;
+    private double formula;
 
     @OneToMany(mappedBy = "skill", cascade = CascadeType.ALL)
     private Set<Indicator> indicators;
@@ -42,14 +42,14 @@ public class Skill {
 
     }
 
-    public Skill(String name, Subject subject, String description, String formula) {
+    public Skill(String name, Subject subject, String description, double formula) {
         this.name = name;
         this.subject = subject;
         this.description = description;
         this.formula = formula;
     }
 
-    public Skill(String name, Subject subject, String description, String formula, boolean childrenSkill, String createDate) {
+    public Skill(String name, Subject subject, String description, double formula, boolean childrenSkill, String createDate) {
         this.name = name;
         this.subject = subject;
         this.description = description;
@@ -58,7 +58,7 @@ public class Skill {
         this.createDate = createDate;
     }
 
-    public Skill(String name, Subject subject, Skill parentSkillId, String description, String formula, boolean childrenSkill, String createDate) {
+    public Skill(String name, Subject subject, Skill parentSkillId, String description, double formula, boolean childrenSkill, String createDate) {
         this.name = name;
         this.subject = subject;
         this.parentSkillId = parentSkillId;
@@ -108,11 +108,11 @@ public class Skill {
         this.description = description;
     }
 
-    public String getFormula() {
+    public double getFormula() {
         return formula;
     }
 
-    public void setFormula(String formula) {
+    public void setFormula(double formula) {
         this.formula = formula;
     }
 

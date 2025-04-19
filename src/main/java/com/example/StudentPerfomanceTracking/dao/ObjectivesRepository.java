@@ -23,6 +23,9 @@ public interface ObjectivesRepository extends JpaRepository<Objective, Integer> 
     void deleteObjectiveById(int id);
     Objective findObjectiveById(int objectiveId);
 
+    @Query("SELECT sg.subject FROM Objective sg WHERE sg.id = :objectiveId")
+    Subject findSubjectByObjectiveId(@Param("objectiveId") int objectiveId);
+
     @Query("SELECT sg.user FROM Objective sg WHERE sg.id = :objectiveId")
     User findUserByObjectiveId(@Param("objectiveId") int objectiveId);
 }

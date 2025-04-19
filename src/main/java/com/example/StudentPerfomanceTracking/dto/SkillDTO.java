@@ -7,7 +7,7 @@ public class SkillDTO {
 
     private String name;
 
-    private String formula;
+    private double formula;
 
     private String description;
 
@@ -23,7 +23,7 @@ public class SkillDTO {
     public SkillDTO() {
     }
 
-    public SkillDTO(String name, String formula, String description, int subjectId) {
+    public SkillDTO(String name, double formula, String description, int subjectId) {
         this.name = name;
         this.formula = formula;
         this.description = description;
@@ -46,11 +46,11 @@ public class SkillDTO {
         this.name = name;
     }
 
-    public String getFormula() {
+    public double getFormula() {
         return formula;
     }
 
-    public void setFormula(String formula) {
+    public void setFormula(double formula) {
         this.formula = formula;
     }
 

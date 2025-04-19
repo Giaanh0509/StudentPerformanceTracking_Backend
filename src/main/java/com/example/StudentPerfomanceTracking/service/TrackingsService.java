@@ -26,5 +26,7 @@ public interface TrackingsService {
     Double getTrackingValueStatistics(int trackingId, int indicatorId);
 
     Double getTrackingValueStudent(int trackingId, int indicatorId, int studentId);
-    AchievementDTO getAchievement(int trackingId, int studentId);
+    AchievementDTO getAchievement(int objectiveId, int trackingId, int studentId);
+
+    double calculateScore(int objectiveId, int studentId);
 }

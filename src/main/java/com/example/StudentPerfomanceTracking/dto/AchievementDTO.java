@@ -9,15 +9,18 @@ public class AchievementDTO {
 
     private String trackingDate;
 
+    private double averagePoint;
+
     private List<ScoreDTO> scoreDTOList;
 
     public AchievementDTO() {
     }
 
-    public AchievementDTO(String trackingName, String trackingDate, List<ScoreDTO> scoreDTOList) {
+    public AchievementDTO(String trackingName, String trackingDate, List<ScoreDTO> scoreDTOList, double averagePoint) {
         this.trackingName = trackingName;
         this.trackingDate = trackingDate;
         this.scoreDTOList = scoreDTOList;
+        this.averagePoint = averagePoint;
     }
 
     public String getTrackingName() {
@@ -50,5 +53,13 @@ public class AchievementDTO {
 
     public void setTrackingId(int trackingId) {
         this.trackingId = trackingId;
+    }
+
+    public double getAveragePoint() {
+        return averagePoint;
+    }
+
+    public void setAveragePoint(double averagePoint) {
+        this.averagePoint = averagePoint;
     }
 }

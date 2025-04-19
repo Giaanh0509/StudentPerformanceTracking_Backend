@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -30,6 +32,12 @@ public class TrackingsServiceImpl implements TrackingsService {
 
     @Autowired
     IndicatorsRepository indicatorsRepository;
+
+    @Autowired
+    SkillsRepository skillsRepository;
+
+    @Autowired
+    SubjectsRepository subjectsRepository;
 
     @Override
     public Tracking saveTracking(TrackingDTO trackingDTO) {
@@ -164,8 +172,12 @@ public class TrackingsServiceImpl implements TrackingsService {
     }
 
     @Override
-    public AchievementDTO getAchievement(int trackingId, int studentId) {
+    public AchievementDTO getAchievement(int objectiveId, int trackingId, int studentId) {
         Tracking tracking = trackingsRepository.findTrackingById(trackingId);
+        double averagePoint = 0;
+        double totalPoint = 0;
+        double sumSkill = 0;
+
         AchievementDTO achievementDTO = new AchievementDTO();
         achievementDTO.setTrackingId(trackingId);
         achievementDTO.setTrackingName(tracking.getName());
@@ -174,10 +186,22 @@ public class TrackingsServiceImpl implements TrackingsService {
         List<TrackingDetail> trackingDetails = trackingDetailsRepository.findByTrackingIdAndStudentId(trackingId, studentId);
         for (TrackingDetail trackingDetail: trackingDetails) {
             ScoreDTO scoreDTO = new ScoreDTO(trackingDetail.getIndicator().getSkill().getName(), trackingDetail.getIndicator().getEvaluationType(), trackingDetail.getTrackingValue(), trackingDetail.getIndicator().getScaleMax());
+            totalPoint += trackingDetail.getTrackingValue();
+            sumSkill += trackingDetail.getIndicator().getSkill().getFormula();
             scoreDTOList.add(scoreDTO);
         }
 
+        averagePoint = totalPoint/sumSkill;
+        double rounded = BigDecimal.valueOf(averagePoint)
+                .setScale(2, RoundingMode.HALF_UP)
+                .doubleValue();
+        achievementDTO.setAveragePoint(rounded);
         achievementDTO.setScoreDTOList(scoreDTOList);
         return achievementDTO;
+    }
+
+    @Override
+    public double calculateScore(int objectiveId, int studentId) {
+        return 0;
     }
 }

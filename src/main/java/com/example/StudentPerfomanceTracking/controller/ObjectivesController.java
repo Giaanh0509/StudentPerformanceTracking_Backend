@@ -50,5 +50,4 @@ public class ObjectivesController {
     public List<ObjectiveDTO> getObjectiveByStudentId(@PathVariable int studentId) {
         return objectivesService.findObjectivesByStudentId(studentId);
     }
-
 }

@@ -71,9 +71,16 @@ public class TrackingsController {
         return;
     }
 
-    @GetMapping("/trackingId={trackingId}/studentId={studentId}")
-    public AchievementDTO  getAchievement(@PathVariable("trackingId") int trackingId,
+    @GetMapping("/objectiveId={objectiveId}/trackingId={trackingId}/studentId={studentId}")
+    public AchievementDTO  getAchievement(@PathVariable("objectiveId") int objectiveId,
+                                         @PathVariable("trackingId") int trackingId,
                                          @PathVariable("studentId") int studentId) {
-        return trackingsService.getAchievement(trackingId, studentId);
+        return trackingsService.getAchievement(objectiveId, trackingId, studentId);
+    }
+
+    @GetMapping("/calculate/objectiveId={objectiveId}/studentId={studentId}")
+    public void getCalculateValue( @PathVariable int objectiveId,
+                                   @PathVariable int studentId) {
+        trackingsService.calculateScore(objectiveId, studentId);
     }
 }

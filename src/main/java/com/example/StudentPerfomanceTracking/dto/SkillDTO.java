@@ -30,6 +30,15 @@ public class SkillDTO {
         this.subjectId = subjectId;
     }
 
+    public SkillDTO(String name, double formula, String description, boolean children, String createDate, int subjectId) {
+        this.name = name;
+        this.formula = formula;
+        this.description = description;
+        this.children = children;
+        this.createDate = createDate;
+        this.subjectId = subjectId;
+    }
+
     public int getId() {
         return id;
     }

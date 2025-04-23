@@ -14,4 +14,6 @@ public interface SkillsService {
     SkillDTO updateSkillById(int id, SkillDTO skillDTO);
 
     List<SkillDTO> getSkillsBySubjectId(int subjectId);
+
+    void deleteSkillById(int id);
 }

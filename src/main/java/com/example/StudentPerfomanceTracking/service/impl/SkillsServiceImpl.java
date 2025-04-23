@@ -29,12 +29,12 @@ public class SkillsServiceImpl implements SkillsService {
         Subject subject = subjectsRepository.findSubjectById(skillDTO.getSubjectId());
 
         if(skillDTO.getParentSkillId() == 0) {
-            Skill skill = new Skill(skillDTO.getName(), subject, skillDTO.getDescription(), skillDTO.getFormula(), skillDTO.getChildren(), skillDTO.getCreateDate());
+            Skill skill = new Skill(skillDTO.getName(), subject, skillDTO.getDescription(), skillDTO.getFormula(), skillDTO.isChildrenSkill(), skillDTO.getCreateDate());
             skillsRepository.save(skill);
             skillDTO.setId(skill.getId());
         } else {
             Skill parentSkill = skillsRepository.findSkillById(skillDTO.getParentSkillId());
-            Skill skill = new Skill(skillDTO.getName(), subject, parentSkill,skillDTO.getDescription(), skillDTO.getFormula(), skillDTO.getChildren(), skillDTO.getCreateDate());
+            Skill skill = new Skill(skillDTO.getName(), subject, parentSkill,skillDTO.getDescription(), skillDTO.getFormula(), skillDTO.isChildrenSkill(), skillDTO.getCreateDate());
             skillsRepository.save(skill);
             skillDTO.setId(skill.getId());
         }
@@ -45,7 +45,7 @@ public class SkillsServiceImpl implements SkillsService {
     @Override
     public SkillDTO getSkillById(int id) {
         Skill skill = skillsRepository.findSkillById(id);
-        SkillDTO skillDTO = new SkillDTO(skill.getName(), skill.getFormula(), skill.getDescription(), skill.isChildrenSkill(), skill.getCreateDate(), skill.getSubject().getId());
+        SkillDTO skillDTO = new SkillDTO(skill.getId(), skill.getName(), skill.getFormula(), skill.getDescription(), skill.isChildrenSkill(), skill.getCreateDate(), skill.getSubject().getId());
         return skillDTO;
     }
 
@@ -56,7 +56,7 @@ public class SkillsServiceImpl implements SkillsService {
         skill.setFormula(skillDTO.getFormula());
         skill.setDescription(skillDTO.getDescription());
 
-        SkillDTO skillDto = new SkillDTO(skill.getName(), skill.getFormula(), skill.getDescription(), skill.isChildrenSkill(), skill.getCreateDate(), skill.getSubject().getId());
+        SkillDTO skillDto = new SkillDTO(skill.getId(), skill.getName(), skill.getFormula(), skill.getDescription(), skill.isChildrenSkill(), skill.getCreateDate(), skill.getSubject().getId());
         return skillDto;
     }
 
@@ -66,10 +66,19 @@ public class SkillsServiceImpl implements SkillsService {
         List<SkillDTO> skillDTOS = new ArrayList<>();
 
         for(Skill skill: skills) {
-            SkillDTO skillDto = new SkillDTO(skill.getName(), skill.getFormula(), skill.getDescription(), skill.isChildrenSkill(), skill.getCreateDate(), skill.getSubject().getId());
+            SkillDTO skillDto = new SkillDTO(skill.getId(), skill.getName(), skill.getFormula(), skill.getDescription(), skill.isChildrenSkill(), skill.getCreateDate(), skill.getSubject().getId());
             skillDTOS.add(skillDto);
         }
 
         return skillDTOS;
+    }
+
+    @Override
+    public void deleteSkillById(int id) {
+        if (!skillsRepository.existsById(id)) {
+            throw new RuntimeException("Skill với Id " + id + " không tồn tại.");
+        }
+
+        skillsRepository.deleteSkillById(id);
     }
 }

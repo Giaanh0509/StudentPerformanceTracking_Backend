@@ -37,4 +37,10 @@ public class SkillsController {
     public SkillDTO updateSkillById(@PathVariable("id") int id, @RequestBody SkillDTO skillDTO) {
         return skillsService.updateSkillById(id, skillDTO);
     }
+
+    @GetMapping("/delete/id={id}")
+    public void deleteSkill(@PathVariable("id") int id) {
+        skillsService.deleteSkillById(id);
+        return;
+    }
  }

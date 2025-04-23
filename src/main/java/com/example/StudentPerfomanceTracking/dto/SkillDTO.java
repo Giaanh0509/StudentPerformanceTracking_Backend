@@ -11,7 +11,7 @@ public class SkillDTO {
 
     private String description;
 
-    private boolean children;
+    private boolean childrenSkill;
 
     private String createDate;
 
@@ -30,11 +30,12 @@ public class SkillDTO {
         this.subjectId = subjectId;
     }
 
-    public SkillDTO(String name, double formula, String description, boolean children, String createDate, int subjectId) {
+    public SkillDTO(int id, String name, double formula, String description, boolean childrenSkill, String createDate, int subjectId) {
+        this.id = id;
         this.name = name;
         this.formula = formula;
         this.description = description;
-        this.children = children;
+        this.childrenSkill = childrenSkill;
         this.createDate = createDate;
         this.subjectId = subjectId;
     }
@@ -79,14 +80,6 @@ public class SkillDTO {
         this.subjectId = subjectId;
     }
 
-    public boolean getChildren() {
-        return children;
-    }
-
-    public void setChildren(boolean childrenSkill) {
-        this.children = childrenSkill;
-    }
-
     public String getCreateDate() {
         return createDate;
     }
@@ -101,5 +94,13 @@ public class SkillDTO {
 
     public void setParentSkillId(int parentSkillId) {
         this.parentSkillId = parentSkillId;
+    }
+
+    public boolean isChildrenSkill() {
+        return childrenSkill;
+    }
+
+    public void setChildrenSkill(boolean childrenSkill) {
+        this.childrenSkill = childrenSkill;
     }
 }

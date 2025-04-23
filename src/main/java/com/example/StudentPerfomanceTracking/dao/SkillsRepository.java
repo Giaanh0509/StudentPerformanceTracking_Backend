@@ -2,6 +2,7 @@ package com.example.StudentPerfomanceTracking.dao;
 
 import com.example.StudentPerfomanceTracking.entity.Skill;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
@@ -19,4 +20,8 @@ public interface SkillsRepository extends JpaRepository<Skill, Integer> {
 
     @Query("SELECT s FROM Skill s WHERE s.subject.id = :subjectId AND s.parentSkillId IS NULL")
     List<Skill> findBySubjectIdAndParentSkillIsNull(@Param("subjectId") int subjectId);
+
+    @Modifying
+    @Query("DELETE FROM Skill s WHERE s.id = :id")
+    void deleteSkillById(int id);
 }

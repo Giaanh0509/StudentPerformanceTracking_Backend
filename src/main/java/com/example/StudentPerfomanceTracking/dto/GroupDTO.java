@@ -17,6 +17,8 @@ public class GroupDTO {
 
     private StudentGroup.Status status;
 
+    private int numberOfStudents;
+
     public GroupDTO() {
     }
 
@@ -33,6 +35,15 @@ public class GroupDTO {
         this.description = description;
         this.createDate = createDate;
         this.userId = userId;
+    }
+
+    public GroupDTO(int id, String name, String description, String createDate, int userId, int numberOfStudents) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.createDate = createDate;
+        this.userId = userId;
+        this.numberOfStudents = numberOfStudents;
     }
 
     public GroupDTO(int id, String name, String description, String createDate, int userId, StudentGroup.Status status) {
@@ -112,5 +123,13 @@ public class GroupDTO {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public int getNumberOfStudents() {
+        return numberOfStudents;
+    }
+
+    public void setNumberOfStudents(int numberOfStudents) {
+        this.numberOfStudents = numberOfStudents;
     }
 }

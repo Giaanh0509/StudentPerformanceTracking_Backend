@@ -24,4 +24,7 @@ public interface StudentsGroupsRepository extends JpaRepository<StudentGroup, In
     List<Student> findStudentId(@Param("groupId") int groupId);
 
     void deleteByGroupId(int groupId);
+
+    @Query("SELECT COUNT(sg) FROM StudentGroup sg WHERE sg.group.id = :groupId AND sg.status = :status")
+    int countApprovedStudentsInGroup(@Param("groupId") int groupId, @Param("status") StudentGroup.Status status);
 }

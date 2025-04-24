@@ -5,6 +5,7 @@ import com.example.StudentPerfomanceTracking.dao.StudentsGroupsRepository;
 import com.example.StudentPerfomanceTracking.dao.UsersRepository;
 import com.example.StudentPerfomanceTracking.dto.GroupDTO;
 import com.example.StudentPerfomanceTracking.entity.Group;
+import com.example.StudentPerfomanceTracking.entity.StudentGroup;
 import com.example.StudentPerfomanceTracking.entity.User;
 import com.example.StudentPerfomanceTracking.service.GroupsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,12 +42,14 @@ public class GroupsServiceImpl implements GroupsService {
         List<Group> groupList = groupsRepository.findGroupByUserId(userId);
         List<GroupDTO> groupDTOList = new ArrayList<>();
         for (Group group : groupList) {
+            int approvedCount = studentsGroupsRepository.countApprovedStudentsInGroup(group.getId(), StudentGroup.Status.APPROVED);
             GroupDTO groupDTO = new GroupDTO(
                     group.getId(),
                     group.getName(),
                     group.getDescription(),
                     group.getCreateDate(),
-                    group.getUser().getId()
+                    group.getUser().getId(),
+                    approvedCount
             );
 
             groupDTOList.add(groupDTO);

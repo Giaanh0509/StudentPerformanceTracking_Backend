@@ -5,6 +5,7 @@ import com.example.StudentPerfomanceTracking.entity.Student;
 import com.example.StudentPerfomanceTracking.entity.Subject;
 import com.example.StudentPerfomanceTracking.entity.Tracking;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
@@ -20,6 +21,10 @@ public interface TrackingsRepository extends JpaRepository<Tracking, Integer> {
 
     @Query("SELECT t FROM Tracking t WHERE t.objective.id = :objectiveId ORDER BY t.id DESC")
     List<Tracking> findByObjectiveId(int objectiveId);
+
+    @Modifying
+    @Query("DELETE FROM Tracking t WHERE t.id = :id")
+    void deleteTrackingById(int id);
 
     @Query("SELECT t.objective FROM Tracking t WHERE t.id = :trackingId")
     Objective findObjectiveByTrackingId(@Param("trackingId") int trackingId);

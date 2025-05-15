@@ -63,6 +63,7 @@ com\example\StudentPerfomanceTracking\service\IndicatorsService.class
 com\example\StudentPerfomanceTracking\dto\UserLoginDTO.class
 com\example\StudentPerfomanceTracking\entity\Skill.class
 com\example\StudentPerfomanceTracking\entity\StudentObjective.class
+com\example\StudentPerfomanceTracking\config\WebConfig.class
 com\example\StudentPerfomanceTracking\entity\Role.class
 com\example\StudentPerfomanceTracking\service\RolesService.class
 com\example\StudentPerfomanceTracking\controller\SubjectsController.class

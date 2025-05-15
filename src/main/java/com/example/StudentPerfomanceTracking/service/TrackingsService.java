@@ -29,6 +29,4 @@ public interface TrackingsService {
     AchievementDTO getAchievement(int objectiveId, int trackingId, int studentId);
 
     double calculateScore(int objectiveId, int studentId);
-
-    void deleteTracking(int trackingId);
 }

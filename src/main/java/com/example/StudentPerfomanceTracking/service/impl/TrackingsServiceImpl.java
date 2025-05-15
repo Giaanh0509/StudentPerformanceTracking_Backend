@@ -204,9 +204,4 @@ public class TrackingsServiceImpl implements TrackingsService {
     public double calculateScore(int objectiveId, int studentId) {
         return 0;
     }
-
-    @Override
-    public void deleteTracking(int trackingId) {
-        trackingsRepository.deleteTrackingById(trackingId);
-    }
 }

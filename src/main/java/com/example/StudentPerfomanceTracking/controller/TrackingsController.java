@@ -83,10 +83,4 @@ public class TrackingsController {
                                    @PathVariable int studentId) {
         trackingsService.calculateScore(objectiveId, studentId);
     }
-
-    @GetMapping("/delete/trackingId={trackingId}")
-    public void deleteTracking(@PathVariable int trackingId) {
-        trackingsService.deleteTracking(trackingId);
-        return;
-    }
 }

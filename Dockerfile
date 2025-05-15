@@ -1,17 +1,17 @@
-
-FROM maven:3-openjdk-21 AS build
-WORKDIR /app
-
-COPY . .
-RUN mvn clean package -DskipTests
-
-
-# Run stage
-
+# Sử dụng image JDK chính thức để chạy ứng dụng
 FROM openjdk:21-jdk-slim
+
+# Đặt biến môi trường cho timezone (tuỳ chọn)
+ENV TZ=Asia/Ho_Chi_Minh
+
+# Tạo thư mục chứa app trong container
 WORKDIR /app
 
-COPY --from=build /app/target/DrComputer-0.0.1-SNAPSHOT.war drcomputer.war
+# Copy file JAR từ thư mục target vào container
+COPY target/*.jar app.jar
+
+# Expose port nếu app chạy cổng cụ thể (ví dụ: 8080)
 EXPOSE 8080
 
-ENTRYPOINT ["java","-jar","drcomputer.war"]
+# Câu lệnh chạy ứng dụng
+ENTRYPOINT ["java", "-jar", "/app/app.jar"]
